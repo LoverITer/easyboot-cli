@@ -7,6 +7,7 @@ import org.slf4j.MDC;
 import top.easyblog.titan.constant.Constants;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author: frank.huang
@@ -22,6 +23,27 @@ public class BaseResponse implements Serializable {
     private String message;
     private String code;
     private Boolean success;
+    private Long timestamp;
+    private String path;
+
+    public BaseResponse(Object data,String message,String code){
+        this.data=data;
+        this.message=message;
+        this.code=code;
+        this.success=isSuccess();
+        this.requestId=MDC.get(Constants.REQUEST_ID);
+        this.timestamp=System.currentTimeMillis();
+    }
+
+    public BaseResponse(Object data,String path,String message,String code){
+        this.data=data;
+        this.path=path;
+        this.message=message;
+        this.code=code;
+        this.success=isSuccess();
+        this.requestId=MDC.get(Constants.REQUEST_ID);
+        this.timestamp=System.currentTimeMillis();
+    }
 
 
     public boolean isSuccess(){
