@@ -1,0 +1,32 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: easyblig-cli
+mybatis:
+  config-location: classpath:/mybatis-config.xml
+  mapper-locations: classpath:/mybatis/mapper/*.xml
+logging:
+  config: classpath:logback-spring.xml
+---
+spring:
+  profiles: dev
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${host}:3306/easyblog?autoReconnect=true&useSSL=false&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai
+    username: root #用户名
+    password: 95162437hx$ #密码
+
+
+---
+spring:
+  profiles: test
+
+---
+spring:
+  profiles: stg
+
+---
+spring:
+  profiles: pro
