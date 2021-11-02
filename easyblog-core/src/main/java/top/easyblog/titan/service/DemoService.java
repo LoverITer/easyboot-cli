@@ -1,15 +1,20 @@
 package top.easyblog.titan.service;
 
+import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.easyblog.titan.bean.UserDetailsBean;
+import top.easyblog.titan.constant.Constants;
 import top.easyblog.titan.request.QueryUserRequest;
+import top.easyblog.titan.util.RedisUtils;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author: frank.huang
@@ -18,6 +23,9 @@ import java.util.Random;
 @Slf4j
 @Service
 public class DemoService {
+
+    @Autowired
+    private RedisUtils redisUtils;
 
 
     public Integer getRandomNumber() {
@@ -30,6 +38,10 @@ public class DemoService {
         }
         UserDetailsBean userDetailsBean = UserDetailsBean.builder().build();
         if(StringUtils.isNotEmpty(request.getName())){
+            String jsonStr = redisUtils.get(String.format(Constants.REDIS_USER_KEY, request.getName()));
+            if(StringUtils.isNotEmpty(jsonStr)){
+                return JSON.parseObject(jsonStr, UserDetailsBean.class);
+            }
             userDetailsBean.setName(request.getName());
         }
         if(StringUtils.isNotEmpty(request.getAddress())){
@@ -38,6 +50,7 @@ public class DemoService {
         if(Objects.nonNull(request.getAge())){
             userDetailsBean.setAge(request.getAge());
         }
+        redisUtils.set(String.format(Constants.REDIS_USER_KEY, request.getName()),JSON.toJSONString(request),5L, TimeUnit.MINUTES);
         return userDetailsBean;
     }
 

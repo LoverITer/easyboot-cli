@@ -16,4 +16,6 @@ public final class Constants {
     public static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
     public static final String REQUEST_ID = "X-Request-ID";
+
+    public static final String REDIS_USER_KEY = "easyblog-cli:user:name:%s";
 }
