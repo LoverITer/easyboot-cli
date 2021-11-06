@@ -4,14 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>top.easyblog.titan</groupId>
-    <artifactId>easyblog-cli</artifactId>
+    <groupId>top.easyboot.titan</groupId>
+    <artifactId>easyboot-cli</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0</version>
     <modules>
-        <module>easyblog-common</module>
-        <module>easyblog-core</module>
-        <module>easyblog-web</module>
+        <module>easyboot-common</module>
+        <module>easyboot-core</module>
+        <module>easyboot-web</module>
     </modules>
 
     <properties>
@@ -29,8 +29,8 @@
         <mybatis.spring.boot.version>2.1.0</mybatis.spring.boot.version>
         <pagehelper-version>1.2.13</pagehelper-version>
         <fastjson.version>1.2.62</fastjson.version>
-        <easyblog-common-version>1.0.0</easyblog-common-version>
-        <easyblog-core-version>1.0.0</easyblog-core-version>
+        <easyboot-common-version>1.0.0</easyboot-common-version>
+        <easyboot-core-version>1.0.0</easyboot-core-version>
         <commons-logging-version>1.1.1</commons-logging-version>
         <commons-codec-version>1.4</commons-codec-version>
         <commons-httpclient-version>3.0.1</commons-httpclient-version>
@@ -52,14 +52,14 @@
                 <version>${transmittable-thread-local-version}</version>
             </dependency>
             <dependency>
-                <groupId>top.easyblog.titan</groupId>
-                <artifactId>easyblog-common</artifactId>
-                <version>${easyblog-common-version}</version>
+                <groupId>top.easyboot.titan</groupId>
+                <artifactId>easyboot-common</artifactId>
+                <version>${easyboot-common-version}</version>
             </dependency>
             <dependency>
-                <groupId>top.easyblog.titan</groupId>
-                <artifactId>easyblog-core</artifactId>
-                <version>${easyblog-core-version}</version>
+                <groupId>top.easyboot.titan</groupId>
+                <artifactId>easyboot-core</artifactId>
+                <version>${easyboot-core-version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>

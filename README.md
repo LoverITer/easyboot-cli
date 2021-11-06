@@ -1,31 +1,32 @@
-Spring Boot 多模块脚手架
+easyboot-cli
 ======== 
-这是一个基于Spring Boot搭建多模块脚手架工程，抽取了日常开发常用的目录结构、各种配置以及mvn依赖，使用项目模板可以节约创建一个工程需要耗费大量的时间，并且由于统一化的定制结构，对于管理项目代码风格一致，这是一个非常有效地手段。
+easyboot-cli是一个基于SpringBoot搭建多模块脚手架，抽取了日常开发常用的目录结构、各种配置以及mvn依赖，使用脚手架模板可以节省大量在创建工程时耗费的时间，并且由于统一化的定制结构，对于管理项目代码风格一致，这是一个非常有效地手段。
 
 1、说明
 ------------
-> 这是一个基于Spring Boot搭建多模块脚手架工程，抽取了日常开发常用的目录结构、各种配置以及mvn依赖，使用项目模板可以节约创建一个工程需要耗费大量的时间，并且由于统一化的定制结构，对于管理项目代码风格一致，这是一个非常有效地手段。
-
+> 这是一个基于Spring Boot搭建多模块脚手架工程，抽取了日常开发常用的目录结构、
+> 各种配置以及mvn依赖，使用项目模板可以节约创建一个工程需要耗费大量的时间，并且由于统一化的定制结构，
+> 对于管理项目代码风格一致，这是一个非常有效地手段。 
  
  
 2、脚手架结构 
 ------------
-```text
-easyblog-cli
-├── easyblog-common
-     ├── bean      对外交互的bean
-     ├── constant 系统所使用的的任何常量
-     ├── enums    枚举类
-     ├── request  请求参数封装类
-     ├── response  响应参数封装类
-     └── util      常用工具类
-├── easyblog-core
+```puml
+easyboot-cli
+├── easyboot-common
+     ├── bean          对外交互的bean
+     ├── constant      系统所使用的的任何常量
+     ├── enums         枚举类
+     ├── request       请求参数封装类
+     ├── response      响应参数封装类
+     └── util          常用工具类
+├── easyboot-core
      ├── dao   DAO
           ├── mapper   mapper 接口
           └── model    领域模型实体
-     ├── service 系统核心服务
-     └── exception    自定义错误
-├── easyblog-web
+     ├── service       系统核心服务
+     └── exception     自定义错误
+├── easyboot-web
      ├── aspect       各种机遇AOP机制的配置、工具
      ├── config       系统的各种配置
      ├── controller   web服务控制层
@@ -48,7 +49,7 @@ easyblog-cli
 ##### 5.2 拉取代码并构建应用
 从这里拉取代码到你本地，使用`IntelliJ IDEA`打开项目，可以直接使用Maven打成war包，然后部署到Tomcat的webapps目录下（最好将war包的名字改为ROOT.war），这样就完成了部署
 
-也可以使用Docker容器化部署：[详情点击这里](https://www.easyblog.top/article/details/211)
+也可以使用Docker容器化部署：[详情点击这里](https://www.easyboot.top/article/details/211)
 
 
 6、联系方式
