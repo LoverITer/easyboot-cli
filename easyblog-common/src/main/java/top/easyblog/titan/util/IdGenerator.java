@@ -9,7 +9,11 @@ import java.util.UUID;
 public class IdGenerator {
 
     public static String getRequestId(){
-        return "easyblog-cli-"+getUUID();
+        return getUUID();
+    }
+
+    public static String getTraceId(){
+        return getUUID() + ((int)((Math.random() * 9 + 1) * 100000));
     }
 
 

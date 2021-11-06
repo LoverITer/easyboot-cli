@@ -41,10 +41,16 @@
         <happy-dns-java-version>0.1.4</happy-dns-java-version>
         <flexmark-all-version>0.62.2</flexmark-all-version>
         <apache-commons-lang3>3.12.0</apache-commons-lang3>
+        <transmittable-thread-local-version>2.2.0</transmittable-thread-local-version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>transmittable-thread-local</artifactId>
+                <version>${transmittable-thread-local-version}</version>
+            </dependency>
             <dependency>
                 <groupId>top.easyblog.titan</groupId>
                 <artifactId>easyblog-common</artifactId>
