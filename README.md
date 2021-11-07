@@ -27,12 +27,12 @@ easyboot-cli
      ├── service       系统核心服务
      └── exception     自定义错误
 ├── easyboot-web
-     ├── aspect       各种机遇AOP机制的配置、工具
+     ├── aspect       各种基于AOP机制的配置、工具
      ├── config       系统的各种配置
      ├── controller   web服务控制层
      ├── handler      handler配置
      ├── schedule     系统定时任务
-     └──  log         系统请求日志记录
+     └──  log         系统请求日志记录管理
 ```
 
 
