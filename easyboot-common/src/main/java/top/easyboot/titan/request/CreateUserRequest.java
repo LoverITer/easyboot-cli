@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
+ * Example of request parameter bean to create an object
  * @author: frank.huang
  * @date: 2021-11-01 20:39
  */

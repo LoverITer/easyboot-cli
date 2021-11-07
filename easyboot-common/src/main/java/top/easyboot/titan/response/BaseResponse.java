@@ -10,6 +10,8 @@ import top.easyboot.titan.constant.Constants;
 import java.io.Serializable;
 
 /**
+ * System uniform response object
+ *
  * @author: frank.huang
  * @date: 2021-11-01 08:28
  */

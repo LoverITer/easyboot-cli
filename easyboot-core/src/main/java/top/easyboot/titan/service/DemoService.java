@@ -17,6 +17,8 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * Example service
+ *
  * @author: frank.huang
  * @date: 2021-11-01 21:21
  */
@@ -33,24 +35,24 @@ public class DemoService {
     }
 
     public UserDetailsBean getUserDetails(QueryUserRequest request) {
-        if(StringUtils.isAllBlank(request.getName(),request.getAddress()) && Objects.isNull(request.getAge())){
+        if (StringUtils.isAllBlank(request.getName(), request.getAddress()) && Objects.isNull(request.getAge())) {
             return null;
         }
         UserDetailsBean userDetailsBean = UserDetailsBean.builder().build();
-        if(StringUtils.isNotEmpty(request.getName())){
+        if (StringUtils.isNotEmpty(request.getName())) {
             String jsonStr = redisUtils.get(String.format(Constants.REDIS_USER_KEY, request.getName()));
-            if(StringUtils.isNotEmpty(jsonStr)){
+            if (StringUtils.isNotEmpty(jsonStr)) {
                 return JSON.parseObject(jsonStr, UserDetailsBean.class);
             }
             userDetailsBean.setName(request.getName());
         }
-        if(StringUtils.isNotEmpty(request.getAddress())){
+        if (StringUtils.isNotEmpty(request.getAddress())) {
             userDetailsBean.setAddress(request.getAddress());
         }
-        if(Objects.nonNull(request.getAge())){
+        if (Objects.nonNull(request.getAge())) {
             userDetailsBean.setAge(request.getAge());
         }
-        redisUtils.set(String.format(Constants.REDIS_USER_KEY, request.getName()),JSON.toJSONString(request),5L, TimeUnit.MINUTES);
+        redisUtils.set(String.format(Constants.REDIS_USER_KEY, request.getName()), JSON.toJSONString(request), 5L, TimeUnit.MINUTES);
         return userDetailsBean;
     }
 

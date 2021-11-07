@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 分页参数设置
+ * Paging response parameters
  *
  * @author huangxin
  */
