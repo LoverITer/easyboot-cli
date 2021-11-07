@@ -54,16 +54,12 @@ public class BaseResponse<T> implements Serializable {
         return ResultCode.SUCCESS.getCode().equalsIgnoreCase(this.code);
     }
 
-    public static <T> BaseResponse<T> ok(T data, String path) {
-        return new BaseResponse<>(data, path, ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage());
-    }
-
     public static <T> BaseResponse<T> ok(T data) {
-        return new BaseResponse<>(data, ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage());
+        return new BaseResponse<>(data, "ok", ResultCode.SUCCESS.getCode());
     }
 
     public static <T> BaseResponse<T> fail() {
-        return new BaseResponse<>(null, ResultCode.INTERNAL_ERROR.getMessage(), ResultCode.INTERNAL_ERROR.getCode());
+        return new BaseResponse<>(null, "fail", ResultCode.INTERNAL_ERROR.getCode());
     }
 
     public static <T> BaseResponse<T> fail(String code, String message) {

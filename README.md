@@ -9,14 +9,16 @@ easyboot-cli是一个基于SpringBoot搭建多模块脚手架工程，抽取了�
 对于管理项目代码风格一致，这是一个非常有效地手段。 脚手架特性：
 1. 基于自定义注解 `ResponseWrapper` 自动封装Restful API响应体，无需在再代码中手动封装返回响应对象
 2. 整合Logback，提供全量路追踪**请求id**和**事物id**日志
+3. API接口签名验证
 
 <br/>
 easyboot-cli is a multi-module scaffolding project based on SpringBoot, which extracts the directory structure commonly used in daily development,
 Various configurations and mvn dependencies, the use of scaffolding templates can save a lot of time spent on new projects, thus focusing on business design and implementation, and due to the unified customized structure,
 This is a very effective method for managing project code style consistency. Below are some features of the scaffolding:
+
 1. Automatically encapsulate the Restful API response body based on the custom annotation `ResponseWrapper`, no need to manually encapsulate the returned response object in the code
 2. Integrate Logback to provide full track tracking **request id** and **transaction id** logs
-
+3. API interface signature verification
  
 2、脚手架结构  Structure
 ------------

@@ -18,8 +18,8 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.boot.version>2.4.12.RELEASE</spring.boot.version>
-        <spring.cloud.version>2020.0.3</spring.cloud.version>
+        <spring.boot.version>2.2.8.RELEASE</spring.boot.version>
+        <spring.cloud.version>Hoxton.SR12</spring.cloud.version>
         <spring.cloud.alibaba.version>2.1.0.RELEASE</spring.cloud.alibaba.version>
         <junit.version>4.12</junit.version>
         <slf4j-version>1.7.30</slf4j-version>
@@ -32,7 +32,7 @@
         <easyboot-common-version>1.0.0</easyboot-common-version>
         <easyboot-core-version>1.0.0</easyboot-core-version>
         <commons-logging-version>1.1.1</commons-logging-version>
-        <commons-codec-version>1.4</commons-codec-version>
+        <commons-codec-version>1.15</commons-codec-version>
         <commons-httpclient-version>3.0.1</commons-httpclient-version>
         <commons-pool2-version>2.4.2</commons-pool2-version>
         <sitemapgen4h-veresion>1.0.6</sitemapgen4h-veresion>
@@ -41,11 +41,23 @@
         <happy-dns-java-version>0.1.4</happy-dns-java-version>
         <flexmark-all-version>0.62.2</flexmark-all-version>
         <apache-commons-lang3>3.12.0</apache-commons-lang3>
+        <apache-commons-io>2.6</apache-commons-io>
         <transmittable-thread-local-version>2.2.0</transmittable-thread-local-version>
+        <netty-version>4.1.32.Final</netty-version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-all</artifactId>
+                <version>${netty-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${apache-commons-io}</version>
+            </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>transmittable-thread-local</artifactId>

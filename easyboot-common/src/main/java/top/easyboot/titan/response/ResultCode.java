@@ -12,13 +12,14 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum ResultCode {
-    SUCCESS("success"),
-    INVALID_PARAMS("invalid params"),
-    NOT_FOUND("resource not found"),
-    INTERNAL_ERROR("internal error");
+    SUCCESS,
+    INVALID_PARAMS,
+    NOT_FOUND,
+    INTERNAL_ERROR,
 
-    private final String message;
-
+    SIGN_FAIL,
+    SIGN_ERROR,
+    SIGN_NOT_FOUND;
 
     public String getCode() {
         return this.name().toLowerCase();

@@ -11,6 +11,10 @@ public final class Constants {
 
     //通用
     public static final String UNDERSCORE = "_";
+    public static final String DELIMETER = "&";
+    public static final String SHARP = "#";
+    public static final String COMMA = ",";
+    public static final String EQUAL_SIGN = "=";
     public static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
     //请求类
@@ -23,6 +27,7 @@ public final class Constants {
     public static final String IP = "IP";
     public static final String UNKNOWN_IP = "unknown";
     public static final String REQUEST_URL = "url";
+    public static final String SIGN = "X-SIGN";
 
     //缓存类
     public static final String REDIS_USER_KEY = "easyblog-cli:user:name:%s";
