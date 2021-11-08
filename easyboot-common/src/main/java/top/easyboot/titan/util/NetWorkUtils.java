@@ -2,6 +2,7 @@ package top.easyboot.titan.util;
 
 
 import lombok.extern.slf4j.Slf4j;
+import sun.nio.ch.Net;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.Inet4Address;
@@ -14,6 +15,8 @@ import java.util.Enumeration;
  */
 @Slf4j
 public final class NetWorkUtils {
+
+    private NetWorkUtils(){}
 
     /**
      * 获取请求来源的IP,可以适应前置部署有Nginx等反向代理软件等的情况. HTTP_CLIENT_IP 无法伪造，所以放在第一个

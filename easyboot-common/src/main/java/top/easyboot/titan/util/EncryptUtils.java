@@ -13,7 +13,7 @@ import java.security.MessageDigest;
 import java.security.SecureRandom;
 
 /**
- * @author huangxin
+ * @author frank.huang
  */
 public class EncryptUtils {
     private static final String MD5 = "MD5";
@@ -22,34 +22,14 @@ public class EncryptUtils {
     private static final String HmacSHA1 = "HmacSHA1";
     private static final String DES = "DES";
     private static final String AES = "AES";
+    private static final int keysizeDES = 0;
+    private static final int keysizeAES = 128;
 
-
-    /**
-     * DES
-     */
-    private int keysizeDES = 0;
-    /**
-     * AES
-     */
-    private int keysizeAES = 128;
-
-    volatile private static EncryptUtils me;
 
     private EncryptUtils() {
         //单例
     }
 
-    //DCL双检查锁
-    public static EncryptUtils getInstance() {
-        if (me == null) {
-            synchronized (EncryptUtils.class) {
-                if (me == null) {
-                    me = new EncryptUtils();
-                }
-            }
-        }
-        return me;
-    }
 
     /**
      * 使用MessageDigest进行单向加密（无密码）
@@ -58,7 +38,7 @@ public class EncryptUtils {
      * @param algorithm 加密算法名称
      * @return
      */
-    private String messageDigest(String res, String algorithm) {
+    private static String messageDigest(String res, String algorithm) {
         try {
             MessageDigest md = MessageDigest.getInstance(algorithm);
             byte[] resBytes = res.getBytes(Constants.DEFAULT_CHARSET);
@@ -77,7 +57,7 @@ public class EncryptUtils {
      * @param key       加密使用的秘钥
      * @return
      */
-    private String keyGeneratorMac(String res, String algorithm, String key) {
+    private static String keyGeneratorMac(String res, String algorithm, String key) {
         try {
             SecretKey sk = null;
             if (key == null) {
@@ -107,7 +87,7 @@ public class EncryptUtils {
      * @param isEncode
      * @return
      */
-    private String keyGeneratorES(String res, String algorithm, String key, int keysize, boolean isEncode) {
+    private static String keyGeneratorES(String res, String algorithm, String key, int keysize, boolean isEncode) {
         try {
             KeyGenerator kg = KeyGenerator.getInstance(algorithm);
             if (keysize == 0) {
@@ -116,7 +96,7 @@ public class EncryptUtils {
             } else if (key == null) {
                 kg.init(keysize);
             } else {
-                byte[] keyBytes =  key.getBytes(Constants.DEFAULT_CHARSET);
+                byte[] keyBytes = key.getBytes(Constants.DEFAULT_CHARSET);
                 kg.init(keysize, new SecureRandom(keyBytes));
             }
             SecretKey sk = kg.generateKey();
@@ -136,7 +116,7 @@ public class EncryptUtils {
         return null;
     }
 
-    private String base64(byte[] res) {
+    private static String base64(byte[] res) {
         return Base64.encode(res);
     }
 
@@ -176,7 +156,7 @@ public class EncryptUtils {
      * @param res 需要加密的原文
      * @return
      */
-    public String MD5(String res) {
+    public static String MD5(String res) {
         return messageDigest(res, MD5);
     }
 
@@ -187,7 +167,7 @@ public class EncryptUtils {
      * @param key 秘钥
      * @return
      */
-    public String MD5(String res, String key) {
+    public static String MD5(String res, String key) {
         return keyGeneratorMac(res, HmacMD5, key);
     }
 
@@ -197,7 +177,7 @@ public class EncryptUtils {
      * @param res 需要加密的原文
      * @return
      */
-    public String SHA1(String res) {
+    public static String SHA1(String res) {
         return messageDigest(res, SHA1);
     }
 
@@ -208,7 +188,7 @@ public class EncryptUtils {
      * @param key 秘钥
      * @return
      */
-    public String SHA1(String res, String key) {
+    public static String SHA1(String res, String key) {
         return keyGeneratorMac(res, HmacSHA1, key);
     }
 
@@ -229,7 +209,7 @@ public class EncryptUtils {
      * @param key 秘钥
      * @return
      */
-    public String DESDecode(String res, String key) {
+    public static String DESDecode(String res, String key) {
         return keyGeneratorES(res, DES, key, keysizeDES, false);
     }
 
@@ -240,7 +220,7 @@ public class EncryptUtils {
      * @param key 秘钥
      * @return
      */
-    public String AESEncode(String res, String key) {
+    public static String AESEncode(String res, String key) {
         return keyGeneratorES(res, AES, key, keysizeAES, true);
     }
 
@@ -251,7 +231,7 @@ public class EncryptUtils {
      * @param key 秘钥
      * @return
      */
-    public String AESDecode(String res, String key) {
+    public static String AESDecode(String res, String key) {
         return keyGeneratorES(res, AES, key, keysizeAES, false);
     }
 
@@ -262,7 +242,7 @@ public class EncryptUtils {
      * @param key 秘钥
      * @return
      */
-    public String XOREncode(String res, String key) {
+    public static String XOREncode(String res, String key) {
         byte[] bs = res.getBytes();
         for (int i = 0; i < bs.length; i++) {
             bs[i] = (byte) ((bs[i]) ^ key.hashCode());
@@ -277,7 +257,7 @@ public class EncryptUtils {
      * @param key 秘钥
      * @return
      */
-    public String XORDecode(String res, String key) {
+    public static String XORDecode(String res, String key) {
         byte[] bs = parseHexStr2Byte(res);
         for (int i = 0; i < bs.length; i++) {
             bs[i] = (byte) ((bs[i]) ^ key.hashCode());
@@ -292,7 +272,7 @@ public class EncryptUtils {
      * @param key 秘钥
      * @return
      */
-    public int XOR(int res, String key) {
+    public static int XOR(int res, String key) {
         return res ^ key.hashCode();
     }
 
@@ -302,7 +282,7 @@ public class EncryptUtils {
      * @param res 密文
      * @return
      */
-    public String Base64Encode(String res) {
+    public static String Base64Encode(String res) {
         return Base64.encode(res.getBytes());
     }
 
@@ -312,7 +292,7 @@ public class EncryptUtils {
      * @param res
      * @return
      */
-    public String Base64Decode(String res) {
+    public static String Base64Decode(String res) {
         return new String(Base64.decode(res));
     }
 

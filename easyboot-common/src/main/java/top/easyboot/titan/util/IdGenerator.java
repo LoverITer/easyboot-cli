@@ -8,6 +8,8 @@ import java.util.UUID;
  */
 public class IdGenerator {
 
+    private IdGenerator(){}
+
     public static String getRequestId(){
         return getUUID();
     }

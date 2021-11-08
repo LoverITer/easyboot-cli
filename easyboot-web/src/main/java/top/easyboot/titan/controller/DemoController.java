@@ -11,6 +11,8 @@ import top.easyboot.titan.service.DemoService;
 import java.util.List;
 
 /**
+ * Example cntroller
+ *
  * @author: frank.huang
  * @date: 2021-10-31 23:08
  */

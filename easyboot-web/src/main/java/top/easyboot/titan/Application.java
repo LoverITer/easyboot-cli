@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 @EnableAspectJAutoProxy
 @EnableTransactionManagement
-@MapperScan(basePackages = "top.easyblog.titan.dao")
+@MapperScan(basePackages = "top.easyboot.titan.dao")
 @SpringBootApplication
 public class Application {
 

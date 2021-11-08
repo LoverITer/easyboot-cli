@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
+ * Demo Bean
  * @author: frank.huang
  * @date: 2021-11-01 21:26
  */
