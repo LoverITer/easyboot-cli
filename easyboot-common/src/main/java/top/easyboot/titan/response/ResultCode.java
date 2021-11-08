@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * 响应码
+ * System unified response code
  *
  * @author frank.huang
  * @since 2021/8/21 22:13
@@ -12,16 +12,16 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum ResultCode {
-    SUCCESS("success"),
-    INVALID_PARAMS("invalid params"),
-    NOT_FOUND("resource not found"),
-    INTERNAL_ERROR("internal error")
-    ;
+    SUCCESS,
+    INVALID_PARAMS,
+    NOT_FOUND,
+    INTERNAL_ERROR,
 
-    private final String message;
+    SIGN_FAIL,
+    SIGN_ERROR,
+    SIGN_NOT_FOUND;
 
-
-    public String getCode(){
+    public String getCode() {
         return this.name().toLowerCase();
     }
 }
