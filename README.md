@@ -1,4 +1,3 @@
-![46EF751B](https://user-images.githubusercontent.com/52988156/141603154-6d5303c3-9772-4217-969e-d17f139c398d.png)
 easyboot-cli
 ========
 easyboot-cli是一个基于SpringBoot搭建多模块脚手架，抽取了日常开发常用的目录结构、各种配置以及mvn依赖，使用脚手架模板可以节省大量在创建工程时耗费的时间，并且由于统一化的定制结构，对于管理项目代码风格一致，这是一个非常有效地手段。
