@@ -87,9 +87,9 @@ public class DemoController {
      * 测试异常处理
      */
     @ResponseWrapper
-    @GetMapping("/exp")
-    public void exception() {
-        int a = 2 / 0;
+    @GetMapping("/exp/{num}")
+    public void exception(@PathVariable(value = "num") String num) {
+        System.out.println(num);
     }
 
 }

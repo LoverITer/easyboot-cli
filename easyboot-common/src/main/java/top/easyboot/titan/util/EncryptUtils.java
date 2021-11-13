@@ -9,15 +9,19 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.Mac;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
+
+import static javax.xml.crypto.dsig.DigestMethod.SHA256;
 
 /**
  * @author frank.huang
  */
 public class EncryptUtils {
     private static final String MD5 = "MD5";
-    private static final String SHA1 = "SHA1";
+    private static final String SHA1 = "SHA-1";
+    private static final String SHA256 = "SHA-256";
     private static final String HmacMD5 = "HmacMD5";
     private static final String HmacSHA1 = "HmacSHA1";
     private static final String DES = "DES";
@@ -41,8 +45,9 @@ public class EncryptUtils {
     private static String messageDigest(String res, String algorithm) {
         try {
             MessageDigest md = MessageDigest.getInstance(algorithm);
-            byte[] resBytes = res.getBytes(Constants.DEFAULT_CHARSET);
-            return base64(md.digest(resBytes));
+            md.update(res.getBytes(StandardCharsets.UTF_8));
+            //将byte转化成16近制
+            return parseByte2HexStr(md.digest(md.digest()));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -123,10 +128,10 @@ public class EncryptUtils {
     /**
      * 将二进制转换成16进制
      */
-    public static String parseByte2HexStr(byte buf[]) {
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < buf.length; i++) {
-            String hex = Integer.toHexString(buf[i] & 0xFF);
+    public static String parseByte2HexStr(byte[] bytes) {
+        StringBuilder sb = new StringBuilder();
+        for (byte b : bytes) {
+            String hex = Integer.toHexString(b & 0xFF);
             if (hex.length() == 1) {
                 hex = '0' + hex;
             }
@@ -193,14 +198,15 @@ public class EncryptUtils {
     }
 
     /**
-     * 使用DES加密算法进行加密（可逆）
-     * @param info 需要加密的原文
-     * @param key 秘钥
+     * SHA256摘要算法（不可逆）
+     *
+     * @param res
      * @return
      */
-    /*public String DESEncode(String info, String key) {
-        return keyGeneratorES(info, DES, key, keysizeDES, true);
-    }*/
+    public static String SHA256(String res) {
+        return messageDigest(res, SHA256);
+    }
+
 
     /**
      * 对使用DES加密算法的密文进行解密（可逆）

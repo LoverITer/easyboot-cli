@@ -30,15 +30,8 @@ public class RequestIdGeneratorFilter implements Filter {
                 requestId = IdGenerator.getRequestId();
             }
 
-            String traceId = request.getHeader(Constants.TRACE_ID);
-            if (StringUtils.isEmpty(traceId)) {
-                traceId = IdGenerator.getTraceId();
-            }
-
             MDC.put(Constants.REQUEST_ID, requestId);
-            MDC.put(Constants.TRACE_ID, traceId);
             response.setHeader(Constants.REQUEST_ID_HEADER, requestId);
-            response.setHeader(Constants.TRACE_ID, traceId);
             // 放入ip
             MDC.put(Constants.IP, NetWorkUtils.getRequestSourceIp(request));
             MDC.put(Constants.REQUEST_URL, request.getRequestURI());

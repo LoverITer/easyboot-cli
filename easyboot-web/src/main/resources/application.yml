@@ -11,7 +11,7 @@ logging:
 ---
 application.easyblig-cli:
   app_id: 10086
-  app_secret: a5fbe495127e41da9c2b7f7f6609e39c
+  secret: a5fbe495127e41da9c2b7f7f6609e39c
 
 spring:
   profiles: dev
