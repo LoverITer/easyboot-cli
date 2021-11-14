@@ -12,6 +12,8 @@ import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
+import java.util.Arrays;
+import java.util.Locale;
 
 import static javax.xml.crypto.dsig.DigestMethod.SHA256;
 
@@ -24,6 +26,7 @@ public class EncryptUtils {
     private static final String SHA256 = "SHA-256";
     private static final String HmacMD5 = "HmacMD5";
     private static final String HmacSHA1 = "HmacSHA1";
+    private static final String HmacSHA256="HmacSHA256";
     private static final String DES = "DES";
     private static final String AES = "AES";
     private static final int keysizeDES = 0;
@@ -47,7 +50,7 @@ public class EncryptUtils {
             MessageDigest md = MessageDigest.getInstance(algorithm);
             md.update(res.getBytes(StandardCharsets.UTF_8));
             //将byte转化成16近制
-            return parseByte2HexStr(md.digest(md.digest()));
+            return parseByte2HexStr(md.digest());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -130,12 +133,13 @@ public class EncryptUtils {
      */
     public static String parseByte2HexStr(byte[] bytes) {
         StringBuilder sb = new StringBuilder();
+        String temp = null;
         for (byte b : bytes) {
-            String hex = Integer.toHexString(b & 0xFF);
-            if (hex.length() == 1) {
-                hex = '0' + hex;
+            temp = Integer.toHexString(b & 0xFF);
+            if (temp.length() == 1) {
+                temp = '0' + temp;
             }
-            sb.append(hex.toUpperCase());
+            sb.append(temp);
         }
         return sb.toString();
     }
@@ -206,6 +210,18 @@ public class EncryptUtils {
     public static String SHA256(String res) {
         return messageDigest(res, SHA256);
     }
+
+    /**
+     * 使用SHA256加密算法进行加密（不可逆）
+     *
+     * @param res 需要加密的原文
+     * @param key 秘钥
+     * @return
+     */
+    public static String SHA256(String res, String key) {
+        return keyGeneratorMac(res, HmacSHA256, key);
+    }
+
 
 
     /**

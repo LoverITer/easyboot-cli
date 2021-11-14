@@ -32,28 +32,24 @@ public interface SignHandler {
     default String generateSign(SignEntity signEntity) {
         StringBuilder appender = new StringBuilder(signEntity.getMethod()+" "+signEntity.getPath()+"?");
         Map<String, String> headers = signEntity.getHeaders();
-        headers.forEach((name,value)->{
-            appender.append(name).append(Constants.EQUAL_SIGN).append(value).append(Constants.DELIMETER);
-        });
+        appender.append(Constants.APP_ID).append(Constants.EQUAL_SIGN).append(headers.get(Constants.APP_ID)).append(Constants.DELIMETER);
+        appender.append(Constants.SECRET).append(Constants.EQUAL_SIGN).append(headers.get(Constants.SECRET)).append(Constants.DELIMETER);
+        appender.append(Constants.TIMESTAMP).append(Constants.EQUAL_SIGN).append(headers.get(Constants.TIMESTAMP)).append(Constants.DELIMETER);
+
         Map<String, String[]> pathParams = signEntity.getPathParams();
         if(!CollectionUtils.isEmpty(pathParams)){
-            pathParams.entrySet().stream().sorted(Map.Entry.comparingByKey(Comparator.reverseOrder())).forEach(paramEntry -> {
+            pathParams.entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach(paramEntry -> {
                 String paramValue = String.join(Constants.COMMA, Arrays.stream(paramEntry.getValue()).sorted().toArray(String[]::new));
                 appender.append(paramEntry.getKey()).append(Constants.EQUAL_SIGN).append(paramValue).append(Constants.DELIMETER);
             });
         }
-        return SignUtils.sign(appender.substring(0,appender.length()-1));
+        return SignUtils.sign(appender.substring(0, appender.length() - 1));
     }
 
     default boolean checkSign(SignEntity signEntity) throws Exception {
         if (Objects.isNull(signEntity)) {
             throw new BusinessException(ResultCode.SIGN_FAIL);
         }
-        String path = signEntity.getPath();
-       /* if (StringUtils.isNotEmpty(path) && (path.contains(Constants.LOCAL_HOST) || path.contains(Constants.LOOPBACK_ADDRESS))) {
-            //本地访问直接通过
-            return true;
-        }*/
         String requestTimestamp = signEntity.getHeaders().get(Constants.TIMESTAMP);
         if (StringUtils.isEmpty(requestTimestamp)) {
             throw new BusinessException(ResultCode.SIGN_FAIL, "timestamp is empty");
