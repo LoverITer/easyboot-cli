@@ -92,4 +92,10 @@ public class DemoController {
         System.out.println(num);
     }
 
+    @ResponseWrapper
+    @GetMapping(value = "/fetchBaidu")
+    public Object fetchBaidu(){
+        return demoService.fetchBaidu();
+    }
+
 }

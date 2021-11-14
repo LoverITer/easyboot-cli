@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.easyboot.titan.bean.UserDetailsBean;
 import top.easyboot.titan.constant.Constants;
+import top.easyboot.titan.feign.client.DemoClient;
 import top.easyboot.titan.request.QueryUserRequest;
 import top.easyboot.titan.util.RedisUtils;
 
@@ -28,6 +29,9 @@ public class DemoService {
 
     @Autowired
     private RedisUtils redisUtils;
+
+    @Autowired
+    private DemoClient demoClient;
 
 
     public Integer getRandomNumber() {
@@ -72,6 +76,11 @@ public class DemoService {
                         .age(300)
                         .address("本宇宙-拉尼亚凯亚超星系团-室女座星系团-本星系群-银河系-猎户座旋臂-太阳系-地球")
                         .build());
+    }
+
+
+    public Object fetchBaidu(){
+         return demoClient.request(() -> demoClient.fetchBaidu());
     }
 
 }
