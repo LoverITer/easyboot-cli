@@ -25,6 +25,13 @@ spring:
     host: ${host}
     port: 63790
     password: CySynWsw5NLz
+
+urls:
+  demo: https://baidu.com
+
+logging:
+  level:
+    top.easyblog.titan.feign.client.*: debug   #Feign日志级别
 ---
 spring:
   profiles: test
