@@ -3,7 +3,7 @@
 
 <generatorConfiguration>
     <!--mysql 连接数据库jar 这里选择自己本地位置-->
-    <classPathEntry location="D:\maven\Repository\mysql\mysql-connector-java\8.0.19\mysql-connector-java-8.0.19.jar" />
+    <classPathEntry location="{MYSQL_DRIVER_LOCATION}" />
     <context id="testTables" targetRuntime="MyBatis3">
         <commentGenerator>
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
@@ -11,8 +11,9 @@
         </commentGenerator>
         <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://47.99.161.205:3306/easyblog?useSSL=false" userId="root"
-                        password="95162437hx$">
+                        connectionURL="jdbc:mysql://{MYSQL_SEVER}:{PORT}/{DATABASE}?useSSL=false"
+                        userId="{USER}"
+                        password="{PASSWORD}">
         </jdbcConnection>
         <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
            NUMERIC 类型解析为java.math.BigDecimal -->
@@ -40,6 +41,11 @@
         </sqlMapGenerator>
 
         <!-- targetPackage：mapper接口生成的位置 -->
+        <!-- 客户端代码,生成易于使用的正对Model对象和XML配置文件的代码
+        type="ANNOTATEDMAPPER", 生成Java Model和基于注解的Mapper对象
+        type="MIXEDMAPPER", 生成基于注解的Java Model和相应的Mapper对象
+        type="XMLMAPPER", 生成SQLMap XML文件和独立的Mapper接口
+        -->
         <javaClientGenerator type="XMLMAPPER"
                              targetPackage="top.easyblog.titan.dao.auto.mapper"
                              targetProject="src/main/java">
@@ -47,8 +53,9 @@
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
 
-        <!-- 指定数据库表 example ，设置是否要生成Example方法-->
-        <table tableName="example" schema=""
+        <!--请根据自己数据库对应的表名进行配置修改，这里仅供参考-->
+        <!--生成对应表及类名-->
+        <table tableName="user" domainObjectName="User"
                enableCountByExample="false"
                enableDeleteByExample="false"
                enableUpdateByExample="false"

@@ -4,8 +4,8 @@
     <springProperty scope="context" name="springAppName" source="spring.application.name"/>
     <property name="log.path" value="log" />
     <property name="log.maxHistory" value="15" />
-    <property name="log.colorPattern" value="%magenta(%d{yyyy-MM-dd HH:mm:ss}) %highlight(%-5level) %cyan([AppName=${springAppName:-},IP=%X{IP},RequestId=%X{RequestId},TxId=%X{TxId},TraceId=%X{TraceId},SpanId=%X{SpanId},SpanExport=%X{SpanExport}]) %highlight(%thread) %highlight(%logger) %msg%n"/>
-    <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5level [AppName=${springAppName:-},IP=%X{IP},RequestId=%X{RequestId},TxId=%X{TxId},TraceId=%X{TraceId},SpanId=%X{SpanId},SpanExport=%X{SpanExport}] %thread %logger %msg%n"/>
+    <property name="log.colorPattern" value="%magenta(%d{yyyy-MM-dd HH:mm:ss}) %highlight(%-5level) %cyan([AppName=${springAppName:-},IP=%X{IP},RequestId=%X{RequestId},TxId=%X{TxId},SpanId=%X{SpanId},SpanExport=%X{SpanExport}]) %highlight(%thread) %highlight(%logger) %msg%n"/>
+    <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5level [AppName=${springAppName:-},IP=%X{IP},RequestId=%X{RequestId},TxId=%X{TxId},SpanId=%X{SpanId},SpanExport=%X{SpanExport}] %thread %logger %msg%n"/>
 
     <springProfile name="dev">
         <!--输出到控制台-->

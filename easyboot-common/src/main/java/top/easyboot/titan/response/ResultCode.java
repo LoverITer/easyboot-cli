@@ -19,7 +19,9 @@ public enum ResultCode {
 
     SIGN_FAIL,
     SIGN_ERROR,
-    SIGN_NOT_FOUND;
+    SIGN_NOT_FOUND,
+    SING_HAS_EXPIRE;
+
 
     public String getCode() {
         return this.name().toLowerCase();
