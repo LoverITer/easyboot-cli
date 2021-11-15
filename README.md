@@ -1,8 +1,8 @@
-EasyBoot-CLI
+📚 EasyBoot-CLI
 ========
 easyboot-cli是一个基于SpringBoot搭建多模块脚手架，抽取了日常开发常用的目录结构、各种配置以及mvn依赖，使用脚手架模板可以节省大量在创建工程时耗费的时间，并且由于统一化的定制结构，对于管理项目代码风格一致，这是一个非常有效地手段。
 
-1、快速开始 Getting Start
+⭐️ 1、快速开始 Getting Start
 ------------
 easyboot-cli是一个基于SpringBoot搭建多模块脚手架工程，抽取了日常开发常用的目录结构、
 各种配置以及mvn依赖，使用脚手架模板可以节约大量花费在新建工程上的时间，从而聚焦于业务设计和实现，并且由于统一化的定制结构，
@@ -20,7 +20,7 @@ This is a very effective method for managing project code style consistency. Bel
 2. Integrate Logback to provide full track tracking **request id** and **transaction id** logs
 3. API interface signature verification protection interface is no longer "streaking"
  
-2、脚手架结构  Structure
+🔬 2、脚手架结构  Structure
 ------------
 ```puml
 easyboot-cli
@@ -47,7 +47,7 @@ easyboot-cli
 ```
 
 
-3、脚手架的使用  Using EasyBoot-cli
+🔧 3、脚手架的使用  Using EasyBoot-cli
 ------
 
 ##### 3.1 环境搭建
@@ -64,12 +64,12 @@ easyboot-cli
 
 
 
-4、技术栈 Built With
+🔨 4、技术栈 Built With
 ------
 * [SpringBoot 2.4.12](https://docs.spring.io/spring-boot/docs/2.4.12/reference/html/index.html) - Spring Boot makes it easy to create stand-alone, production-grade Spring based Applications.
 * 
 
-5、添砖加瓦 Contributing
+🔗 5、添砖加瓦 Contributing
 -----
 easyboot-cli的源码分为两类分支，功能如下：
 
@@ -87,12 +87,12 @@ The source code of easyboot-cli is divided into two types of branches, with the 
 | {feat}-{date}-{name}    | Custom development branch, accept modification or pr, branch naming convention: `{feat}` is the main feature of the submitted modification; `date` is the modification date; `name` is your name, which can be full or abbreviated, such as `sign-210912-hx` means that the hx partner submitted a verification related function on September 12, 2021       |
 
 
-5、开发者 Authors
+👨‍💻‍ 5、开发者 Authors
 ------
 * **frank.huang**  QQ: 2489868503  Email: huangxin981230@163.com
 
 
-6、版权  License
+📄 6、版权  License
 -------
 该项目遵循 Apache 2.0 license.
 
