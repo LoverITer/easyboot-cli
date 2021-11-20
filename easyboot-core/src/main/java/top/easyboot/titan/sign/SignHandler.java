@@ -26,21 +26,19 @@ public interface SignHandler {
     /**
      * 根据请求参数重新计算验签值
      * 验签字符串拼接规则：${请求方法} ${请求路径}?appId=${appId}&secret=${secret}&timestamp=${timestamp}&param1=${value1}....
+     *
      * @param signEntity
      * @return
      */
     default String generateSign(SignEntity signEntity) {
-        StringBuilder appender = new StringBuilder(signEntity.getMethod()+" "+signEntity.getPath()+"?");
-        Map<String, String> headers = signEntity.getHeaders();
-        appender.append(Constants.APP_ID).append(Constants.EQUAL_SIGN).append(headers.get(Constants.APP_ID)).append(Constants.DELIMETER);
-        appender.append(Constants.SECRET).append(Constants.EQUAL_SIGN).append(headers.get(Constants.SECRET)).append(Constants.DELIMETER);
-        appender.append(Constants.TIMESTAMP).append(Constants.EQUAL_SIGN).append(headers.get(Constants.TIMESTAMP)).append(Constants.DELIMETER);
-
+        StringBuilder appender = new StringBuilder(signEntity.getMethod() + " " + signEntity.getPath() + "?");
         Map<String, String[]> pathParams = signEntity.getPathParams();
-        if(!CollectionUtils.isEmpty(pathParams)){
-            pathParams.entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach(paramEntry -> {
-                String paramValue = String.join(Constants.COMMA, Arrays.stream(paramEntry.getValue()).sorted().toArray(String[]::new));
-                appender.append(paramEntry.getKey()).append(Constants.EQUAL_SIGN).append(paramValue).append(Constants.DELIMETER);
+        if (!CollectionUtils.isEmpty(pathParams)) {
+            pathParams.entrySet().stream().filter(entry -> !Constants.SIGN.equalsIgnoreCase(entry.getKey()))
+                    .sorted(Map.Entry.comparingByKey())
+                    .forEach(entry -> {
+                String paramValue = String.join(Constants.COMMA, Arrays.stream(entry.getValue()).sorted().toArray(String[]::new));
+                appender.append(entry.getKey()).append(Constants.EQUAL_SIGN).append(paramValue).append(Constants.DELIMETER);
             });
         }
         return SignUtils.sign(appender.substring(0, appender.length() - 1));
@@ -50,29 +48,30 @@ public interface SignHandler {
         if (Objects.isNull(signEntity)) {
             throw new BusinessException(ResultCode.SIGN_FAIL);
         }
-        String requestTimestamp = signEntity.getHeaders().get(Constants.TIMESTAMP);
-        if (StringUtils.isEmpty(requestTimestamp)) {
-            throw new BusinessException(ResultCode.SIGN_FAIL, "timestamp is empty");
+        Map<String, String[]> params = signEntity.getPathParams();
+        String[] requestTimestamp = params.get(Constants.TIMESTAMP);
+        if (null==requestTimestamp||requestTimestamp.length==0||StringUtils.isBlank(requestTimestamp[0])) {
+            throw new BusinessException(ResultCode.SIGN_FAIL, "invalid request");
         }
-        long timestamp = Long.parseLong(requestTimestamp);
+        long timestamp = Long.parseLong(requestTimestamp[0]);
         long now = new Date().getTime();
         if (now - timestamp > Constants.TEN_MINUS) {
             throw new BusinessException(ResultCode.SIGN_FAIL, "sign expired");
         }
-        String appId = signEntity.getHeaders().get(Constants.APP_ID);
-        if (StringUtils.isEmpty(appId)) {
-            throw new BusinessException(ResultCode.SIGN_FAIL, " appId is empty");
+        String[] appId = params.get(Constants.APP_ID);
+        if (null==appId||appId.length==0||StringUtils.isBlank(appId[0])) {
+            throw new BusinessException(ResultCode.SIGN_FAIL, "invalid request");
         }
-        String secret = signEntity.getHeaders().get(Constants.SECRET);
-        if (StringUtils.isEmpty(secret)) {
-            throw new BusinessException(ResultCode.SIGN_FAIL, "secret is empty");
+        String[] secret = params.get(Constants.SECRET);
+        if (null==secret||secret.length==0||StringUtils.isBlank(secret[0])) {
+            throw new BusinessException(ResultCode.SIGN_FAIL, "invalid request");
         }
-        String oldSign = signEntity.getSign();
-        if (StringUtils.isEmpty(oldSign)) {
-            throw new BusinessException(ResultCode.SIGN_FAIL, "sign not found");
+        String[] oldSign = params.get(Constants.SIGN);
+        if (null==oldSign||oldSign.length==0||StringUtils.isBlank(oldSign[0])) {
+            throw new BusinessException(ResultCode.SIGN_FAIL, "invalid request");
         }
         String newSign = generateSign(signEntity);
-        if (!oldSign.equals(newSign)) {
+        if (!oldSign[0].equals(newSign)) {
             throw new BusinessException(ResultCode.SIGN_FAIL, "sign invalid");
         }
         return true;
