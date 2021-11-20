@@ -26,7 +26,7 @@ public class BaseResponse<T> implements Serializable {
     private String message;
     private String code;
     private Boolean success;
-    private Long timestamp;
+    private Long serverTime;
     private String path;
 
     public BaseResponse(T data, String message, String code) {
@@ -36,7 +36,7 @@ public class BaseResponse<T> implements Serializable {
         this.code = code;
         this.success = isSuccess();
         this.requestId = MDC.get(Constants.REQUEST_ID);
-        this.timestamp = System.currentTimeMillis();
+        this.serverTime = System.currentTimeMillis();
     }
 
     public BaseResponse(T data, String path, String message, String code) {
@@ -46,7 +46,7 @@ public class BaseResponse<T> implements Serializable {
         this.code = code;
         this.success = isSuccess();
         this.requestId = MDC.get(Constants.REQUEST_ID);
-        this.timestamp = System.currentTimeMillis();
+        this.serverTime = System.currentTimeMillis();
 
     }
 
