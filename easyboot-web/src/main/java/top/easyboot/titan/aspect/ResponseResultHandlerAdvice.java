@@ -1,5 +1,7 @@
 package top.easyboot.titan.aspect;
 
+import com.alibaba.fastjson.JSON;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.core.Ordered;
 import org.springframework.http.MediaType;
@@ -18,6 +20,7 @@ import java.util.Objects;
  * @author: frank.huang
  * @date: 2021-11-01 18:28
  */
+@Slf4j
 @ControllerAdvice
 public class ResponseResultHandlerAdvice implements ResponseBodyAdvice, Ordered {
     @Override
@@ -29,11 +32,15 @@ public class ResponseResultHandlerAdvice implements ResponseBodyAdvice, Ordered 
     public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType mediaType, Class selectedClassType, ServerHttpRequest request, ServerHttpResponse response) {
         if (Objects.nonNull(body)) {
             if(body instanceof BaseResponse) {
+                log.info("Writing "+ JSON.toJSON(body));
                 return body;
             }
+            // 非JSON格式body需要组装成BaseResponse
+            BaseResponse<Object> responseBody = BaseResponse.ok(body);
+            log.info("Writing "+ JSON.toJSONString(responseBody));
+            return responseBody;
         }
-        // 非JSON格式body需要组装成BaseResponse
-        return BaseResponse.ok(body);
+        return BaseResponse.ok(null);
     }
 
     @Override
