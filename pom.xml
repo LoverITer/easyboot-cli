@@ -41,7 +41,7 @@
         <happy-dns-java-version>0.1.4</happy-dns-java-version>
         <flexmark-all-version>0.62.2</flexmark-all-version>
         <apache-commons-lang3>3.12.0</apache-commons-lang3>
-        <apache-commons-io>2.6</apache-commons-io>
+        <apache-commons-io>2.7</apache-commons-io>
         <transmittable-thread-local-version>2.2.0</transmittable-thread-local-version>
         <netty-version>4.1.32.Final</netty-version>
         <Okhttp-version>4.9.1</Okhttp-version>
