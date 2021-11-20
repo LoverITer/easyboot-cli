@@ -1,4 +1,4 @@
-package top.easyboot.titan.service;
+package top.easyboot.titan.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.easyboot.titan.bean.UserDetailsBean;
 import top.easyboot.titan.constant.Constants;
+import top.easyboot.titan.feign.client.DemoClient;
 import top.easyboot.titan.request.QueryUserRequest;
+import top.easyboot.titan.service.IDemoService;
 import top.easyboot.titan.util.RedisUtils;
 
 import java.util.List;
@@ -24,17 +26,21 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 @Service
-public class DemoService {
+public class DemoService implements IDemoService {
 
     @Autowired
     private RedisUtils redisUtils;
 
+    @Autowired
+    private DemoClient demoClient;
 
-    public Integer getRandomNumber() {
+    @Override
+    public Integer demo1() {
         return new Random().nextInt();
     }
 
-    public UserDetailsBean getUserDetails(QueryUserRequest request) {
+    @Override
+    public UserDetailsBean demo2(QueryUserRequest request) {
         if (StringUtils.isAllBlank(request.getName(), request.getAddress()) && Objects.isNull(request.getAge())) {
             return null;
         }
@@ -56,7 +62,8 @@ public class DemoService {
         return userDetailsBean;
     }
 
-    public List<UserDetailsBean> getUserList() {
+    @Override
+    public List<UserDetailsBean> demo3() {
         return Lists.newArrayList(UserDetailsBean.builder()
                         .name("法外狂徒1")
                         .age(100)
@@ -72,6 +79,11 @@ public class DemoService {
                         .age(300)
                         .address("本宇宙-拉尼亚凯亚超星系团-室女座星系团-本星系群-银河系-猎户座旋臂-太阳系-地球")
                         .build());
+    }
+
+    @Override
+    public Object demo4(){
+         return demoClient.request(() -> demoClient.fetchBaidu());
     }
 
 }

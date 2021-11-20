@@ -20,7 +20,9 @@ public enum ResultCode {
     SIGN_FAIL,
     SIGN_ERROR,
     SIGN_NOT_FOUND,
-    SING_HAS_EXPIRE;
+    SING_HAS_EXPIRE,
+
+    REMOTE_INVOKE_FAIL;
 
 
     public String getCode() {
