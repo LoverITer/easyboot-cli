@@ -27,7 +27,7 @@ spring:
     password: CySynWsw5NLz
 
 urls:
-  demo: https://baidu.com
+  demo: https://www.easyblog.top
 
 logging:
   level:

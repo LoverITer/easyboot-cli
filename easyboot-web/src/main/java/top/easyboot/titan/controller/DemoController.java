@@ -6,22 +6,22 @@ import top.easyboot.titan.annotation.ResponseWrapper;
 import top.easyboot.titan.bean.UserDetailsBean;
 import top.easyboot.titan.request.CreateUserRequest;
 import top.easyboot.titan.request.QueryUserRequest;
-import top.easyboot.titan.service.DemoService;
+import top.easyboot.titan.service.IDemoService;
 
 import java.util.List;
 
 /**
- * Example cntroller
+ * Example controller
  *
  * @author: frank.huang
  * @date: 2021-10-31 23:08
  */
 @RestController
-@RequestMapping("/v1/in/demo")
+@RequestMapping("/v1/demo")
 public class DemoController {
 
     @Autowired
-    private DemoService demoService;
+    private IDemoService demoService;
 
     /**
      * 没有返回值的controller
@@ -46,7 +46,7 @@ public class DemoController {
     @ResponseWrapper
     @GetMapping("/int")
     public Integer integer() {
-        return demoService.getRandomNumber();
+        return demoService.demo1();
     }
 
     /**
@@ -57,7 +57,7 @@ public class DemoController {
     @ResponseWrapper
     @GetMapping("/object")
     public UserDetailsBean object(QueryUserRequest request) {
-        return demoService.getUserDetails(request);
+        return demoService.demo2(request);
     }
 
     /**
@@ -68,7 +68,7 @@ public class DemoController {
     @ResponseWrapper
     @GetMapping("/list")
     public List<UserDetailsBean> list() {
-        return demoService.getUserList();
+        return demoService.demo3();
     }
 
     /**
@@ -93,9 +93,9 @@ public class DemoController {
     }
 
     @ResponseWrapper
-    @GetMapping(value = "/fetchBaidu")
+    @GetMapping(value = "/demo4")
     public Object fetchBaidu(){
-        return demoService.fetchBaidu();
+        return demoService.demo4();
     }
 
 }
