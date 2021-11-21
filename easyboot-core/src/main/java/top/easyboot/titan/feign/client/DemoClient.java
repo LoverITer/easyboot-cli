@@ -13,7 +13,7 @@ import top.easyboot.titan.feign.internal.Verify;
 @FeignClient(name = "demo",url = "${urls.demo}",configuration = FeignConfiguration.class)
 public interface DemoClient extends Verify {
 
-    @GetMapping(value = "/")
+    @GetMapping(value = "/demo")
     BaseClientResponse<Object> fetchBaidu();
 
 

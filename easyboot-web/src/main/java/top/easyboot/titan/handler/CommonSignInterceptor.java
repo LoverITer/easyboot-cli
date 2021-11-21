@@ -1,6 +1,7 @@
 package top.easyboot.titan.handler;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import top.easyboot.titan.sign.SignHandler;
 
@@ -12,6 +13,7 @@ import top.easyboot.titan.sign.SignHandler;
 public class CommonSignInterceptor extends SignInterceptor{
 
     @Autowired
+    @Qualifier(value = "commonSignHandler")
     private SignHandler signHandler;
 
 

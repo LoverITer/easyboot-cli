@@ -1,6 +1,7 @@
 package top.easyboot.titan.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -14,6 +15,7 @@ import top.easyboot.titan.handler.SignInterceptor;
 public class WebAppConfigurer implements WebMvcConfigurer {
 
      @Autowired
+     @Qualifier(value = "commonSignInterceptor")
     private SignInterceptor signInterceptor;
 
 
