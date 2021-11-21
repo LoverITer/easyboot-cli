@@ -21,10 +21,10 @@
         <spring.boot.version>2.2.8.RELEASE</spring.boot.version>
         <spring.cloud.version>Hoxton.SR12</spring.cloud.version>
         <spring.cloud.alibaba.version>2.1.0.RELEASE</spring.cloud.alibaba.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <slf4j-version>1.7.30</slf4j-version>
         <lombok.version>1.18.22</lombok.version>
-        <mysql.version>8.0.15</mysql.version>
+        <mysql.version>8.0.16</mysql.version>
         <druid.version>1.1.16</druid.version>
         <mybatis.spring.boot.version>2.1.0</mybatis.spring.boot.version>
         <pagehelper-version>1.2.13</pagehelper-version>
@@ -41,9 +41,9 @@
         <happy-dns-java-version>0.1.4</happy-dns-java-version>
         <flexmark-all-version>0.62.2</flexmark-all-version>
         <apache-commons-lang3>3.12.0</apache-commons-lang3>
-        <apache-commons-io>2.6</apache-commons-io>
+        <apache-commons-io>2.7</apache-commons-io>
         <transmittable-thread-local-version>2.2.0</transmittable-thread-local-version>
-        <netty-version>4.1.32.Final</netty-version>
+        <netty-version>4.1.42.Final</netty-version>
         <Okhttp-version>4.9.1</Okhttp-version>
         <feign-httpclient-version>11.7</feign-httpclient-version>
     </properties>

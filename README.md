@@ -76,7 +76,7 @@ easyboot-cli的源码分为两类分支，功能如下：
 | 分支      | 作用                                                         |
 | --------- | ------------------------------------------------------------ |
 | master | 主分支，release版本使用的分支，与中央库提交的一致，不接收任何pr或修改 |
-| {feat}-{date}-{name}    | 自定义开发分支，接受修改或pr，分支命名规范：`{feat}` 为提交修改的主要特性; `date` 为修改日期; `name` 为你的名字,可以全称也可以缩写，比如 `sign-210912-hx` 表示hx小伙伴再2021年9月12日提交了一个验签相关的功能        |
+| dev-{date}-{feat}    | 自定义开发分支，接受修改或pr，分支命名规范：`{feat}` 为提交修改的主要特性; `date` 为修改日期，比如 `dev-20211107-sign` 表示在2021年9月12日提交了一个验签相关的功能        |
 
 <br/>
 The source code of easyboot-cli is divided into two types of branches, with the following functions:
@@ -84,7 +84,7 @@ The source code of easyboot-cli is divided into two types of branches, with the 
 | branch      | function                                                         |
 | --------- | ------------------------------------------------------------ |
 | master | The main branch, the branch used by the release version, is consistent with the submission of the central library, and does not receive any pr or modification |
-| {feat}-{date}-{name}    | Custom development branch, accept modification or pr, branch naming convention: `{feat}` is the main feature of the submitted modification; `date` is the modification date; `name` is your name, which can be full or abbreviated, such as `sign-210912-hx` means that the hx partner submitted a verification related function on September 12, 2021       |
+| dev-{date}-{feat}    | Custom development branch, accept modification or pr, branch naming convention: `{feat}` is the main feature of committing the modification; `date` is the modification date, for example, `dev-20211107-sign` means submitting on September 12, 2021 A verification related function      |
 
 
 👨‍💻‍ 5、开发者 Authors

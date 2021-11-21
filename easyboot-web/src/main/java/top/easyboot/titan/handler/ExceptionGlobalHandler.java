@@ -50,6 +50,6 @@ public class ExceptionGlobalHandler {
     @ExceptionHandler(BusinessException.class)
     public BaseResponse<Object> handleBusinessException(BusinessException e) {
         log.error(e.getMessage(), e);
-        return BaseResponse.fail(e.getCode().getCode(), e.getMessage());
+        return BaseResponse.fail(e.getCode(), e.getMessage());
     }
 }
