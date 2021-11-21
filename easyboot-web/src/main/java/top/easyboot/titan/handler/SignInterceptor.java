@@ -61,11 +61,15 @@ public abstract class SignInterceptor implements HandlerInterceptor {
         signEntity.setMethod(request.getMethod());
         signEntity.setPath(request.getRequestURL().toString());
         //获取parameters（对应@RequestParam）
-        Map<String, String[]> parameterMap = request.getParameterMap();
-        if(CollectionUtils.isEmpty(parameterMap)){
-            parameterMap=Maps.newHashMap();
+        final Map<String, Collection<String>> parameterMap = Maps.newHashMap();
+        Map<String, String[]> requestParameterMap = request.getParameterMap();
+        if(!CollectionUtils.isEmpty(requestParameterMap)) {
+            requestParameterMap.forEach((key, value) -> {
+                List<String> values = new ArrayList<>(Arrays.asList(value));
+                parameterMap.put(key, Collections.unmodifiableList(values));
+            });
         }
-        signEntity.setPathParams(parameterMap);
+        signEntity.setPathParams(Collections.unmodifiableMap(parameterMap));
         return signEntity;
     }
 

@@ -20,8 +20,8 @@ public class SignEntity {
 
     private String method;
     private String path;
-    private Map<String, String> bodyParams;
+    private Map<String, Collection<String>> bodyParams;
     private Map<String, String> headers;
-    private Map<String, String[]> pathParams;
+    private Map<String, Collection<String>> pathParams;
 
 }

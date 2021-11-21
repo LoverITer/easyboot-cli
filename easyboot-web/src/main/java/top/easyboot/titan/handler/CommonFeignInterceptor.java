@@ -3,6 +3,7 @@ package top.easyboot.titan.handler;
 import feign.Request;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -16,6 +17,7 @@ import java.util.Collection;
  * @author: frank.huang
  * @date: 2021-11-21 13:42
  */
+@Slf4j
 @Component
 public class CommonFeignInterceptor extends SignInterceptor implements RequestInterceptor{
 
@@ -31,15 +33,12 @@ public class CommonFeignInterceptor extends SignInterceptor implements RequestIn
 
     @Override
     public void apply(RequestTemplate requestTemplate) {
-        Collection<String> params = requestTemplate.getRequestVariables();
-        Request request = requestTemplate.request();
-        byte[] body = requestTemplate.body();
-        String bodyTemplate = requestTemplate.bodyTemplate();
-        String path = requestTemplate.path();
-        String url = requestTemplate.url();
-        SignEntity signEntity = new SignEntity();
-        signEntity.setMethod(requestTemplate.method());
-        String sign = handler().generateSign(signEntity);
+         try{
+             handler().postSign(requestTemplate);
+         }catch (Exception e){
+             log.error("CommonFeignInterceptor>>>>>>{}",e.getMessage());
+             throw e;
+         }
     }
 
 }
