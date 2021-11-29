@@ -4,6 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import top.easyboot.exception.SignatureArgumentException;
+import top.easyboot.exception.SignatureException;
 import top.easyboot.titan.exception.BusinessException;
 import top.easyboot.titan.response.BaseResponse;
 import top.easyboot.titan.response.ResultCode;
@@ -51,5 +53,17 @@ public class ExceptionGlobalHandler {
     public BaseResponse<Object> handleBusinessException(BusinessException e) {
         log.error(e.getMessage(), e);
         return BaseResponse.fail(e.getCode(), e.getMessage());
+    }
+
+    /**
+     * 处理未捕获的自定义业务异常 SignatureArgumentException、SignatureException
+     *
+     * @param e 异常
+     * @return 统一响应体
+     */
+    @ExceptionHandler({SignatureArgumentException.class,SignatureException.class})
+    public BaseResponse<Object> handleSignException(RuntimeException e) {
+        log.error(e.getMessage(), e);
+        return BaseResponse.fail(ResultCode.SIGN_FAIL.getCode(), e.getMessage());
     }
 }

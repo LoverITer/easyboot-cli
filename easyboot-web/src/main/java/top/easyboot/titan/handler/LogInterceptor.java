@@ -8,13 +8,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import javax.servlet.DispatcherType;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * @author: frank.huang
@@ -44,7 +39,7 @@ public class LogInterceptor implements HandlerInterceptor {
 
 
 
-    private boolean isEnableLoggingRequestDetails(){
+    public boolean isEnableLoggingRequestDetails(){
         return enableLoggingRequestDetails;
     }
 
