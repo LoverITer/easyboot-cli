@@ -46,10 +46,16 @@
         <netty-version>4.1.42.Final</netty-version>
         <Okhttp-version>4.9.1</Okhttp-version>
         <feign-httpclient-version>11.7</feign-httpclient-version>
+        <api-signature-version>1.0.0</api-signature-version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>top.easyboot</groupId>
+                <artifactId>api-signature-spring-boot-starter</artifactId>
+                <version>${api-signature-version}</version>
+            </dependency>
             <!--okhttp-->
             <dependency>
                 <groupId>com.squareup.okhttp3</groupId>
@@ -119,12 +125,6 @@
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${mybatis.spring.boot.version}</version>
-            </dependency>
-            <!--pageHelper-->
-            <dependency>
-                <groupId>com.github.pagehelper</groupId>
-                <artifactId>pagehelper-spring-boot-starter</artifactId>
-                <version>${pagehelper-version}</version>
             </dependency>
             <dependency>
                 <groupId>junit</groupId>

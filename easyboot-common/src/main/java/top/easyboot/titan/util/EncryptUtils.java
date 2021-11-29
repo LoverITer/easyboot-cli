@@ -12,10 +12,6 @@ import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
-import java.util.Arrays;
-import java.util.Locale;
-
-import static javax.xml.crypto.dsig.DigestMethod.SHA256;
 
 /**
  * @author frank.huang

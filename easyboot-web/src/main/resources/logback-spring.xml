@@ -4,7 +4,7 @@
     <springProperty scope="context" name="springAppName" source="spring.application.name"/>
     <property name="log.path" value="log" />
     <property name="log.maxHistory" value="90" />
-    <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss} [%-5level] [app_name=${springAppName:-},ip=%X{IP},request_id=%X{RequestId},tx_id=%X{TxId},span_id=%X{SpanId}] %thread %logger %msg%n"/>
+    <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss} [%-5level] [app_name=${springAppName:-},ip=%X{IP},request_id=%X{RequestId},tx_id=%X{TxId},span_id=%X{SpanId}] %thread %logger: %msg%n"/>
 
     <springProfile name="dev">
         <!--输出到控制台-->

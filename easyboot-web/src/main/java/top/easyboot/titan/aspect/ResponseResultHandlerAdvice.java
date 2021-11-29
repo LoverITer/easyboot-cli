@@ -35,12 +35,10 @@ public class ResponseResultHandlerAdvice implements ResponseBodyAdvice, Ordered 
                 log.info("Writing "+ JSON.toJSON(body));
                 return body;
             }
-            // 非JSON格式body需要组装成BaseResponse
-            BaseResponse<Object> responseBody = BaseResponse.ok(body);
-            log.info("Writing "+ JSON.toJSONString(responseBody));
-            return responseBody;
         }
-        return BaseResponse.ok(null);
+        BaseResponse<Object> responseBody = BaseResponse.ok(body);
+        log.info("Writing "+ JSON.toJSONString(responseBody));
+        return responseBody;
     }
 
     @Override

@@ -3,22 +3,21 @@ server:
 spring:
   application:
     name: easyblig-cli
-mybatis:
-  config-location: classpath:/mybatis-config.xml
-  mapper-locations: classpath:/mybatis/mapper/*.xml
 logging:
   config: classpath:logback-spring.xml
 ---
-application.easyblig-cli:
-  app_id: 10086
-  secret: a5fbe495127e41da9c2b7f7f6609e39c
+application:
+  signature:
+    enable: true
+    app-id: 10086
+    secret: a5fbe495127e41da9c2b7f7f6609e39c
 
 spring:
   profiles: dev
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${host}:3306/easyblog?autoReconnect=true&useSSL=false&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://${host}:3306/easyboot-dev?autoReconnect=true&useSSL=false&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai
     username: root #用户名
     password: 95162437hx$ #密码
   redis:
