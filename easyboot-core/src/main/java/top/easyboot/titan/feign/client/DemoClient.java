@@ -1,10 +1,13 @@
 package top.easyboot.titan.feign.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import top.easyboot.titan.bean.UserDetailsBean;
 import top.easyboot.titan.feign.config.FeignConfiguration;
 import top.easyboot.titan.feign.internal.BaseClientResponse;
 import top.easyboot.titan.feign.internal.Verify;
+import top.easyboot.titan.request.QueryUserRequest;
 
 /**
  * @author: frank.huang
@@ -13,8 +16,8 @@ import top.easyboot.titan.feign.internal.Verify;
 @FeignClient(name = "demo",url = "${urls.demo}",configuration = FeignConfiguration.class)
 public interface DemoClient extends Verify {
 
-    @GetMapping(value = "/demo")
-    BaseClientResponse<Object> fetchBaidu();
+    @GetMapping(value = "/v1/demo/object")
+    BaseClientResponse<UserDetailsBean> getUserDetailBean(@SpringQueryMap QueryUserRequest request);
 
 
 }

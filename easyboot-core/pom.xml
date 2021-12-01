@@ -116,6 +116,10 @@
             <groupId>commons-httpclient</groupId>
             <artifactId>commons-httpclient</artifactId>
         </dependency>
+        <dependency>
+            <groupId>top.easyboot</groupId>
+            <artifactId>api-signature-spring-boot-starter</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

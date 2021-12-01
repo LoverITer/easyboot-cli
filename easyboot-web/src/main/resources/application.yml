@@ -26,7 +26,7 @@ spring:
     password: CySynWsw5NLz
 
 urls:
-  demo: https://www.easyblog.top
+  demo: http://127.0.0.1:8002
 
 logging:
   level:

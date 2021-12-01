@@ -54,11 +54,11 @@ public class DemoController {
      *
      * @return
      */
-    @ResponseWrapper
+    /*@ResponseWrapper
     @GetMapping("/object")
     public UserDetailsBean object(QueryUserRequest request) {
         return demoService.demo2(request);
-    }
+    }*/
 
     /**
      * 返回list的controller
@@ -94,8 +94,8 @@ public class DemoController {
 
     @ResponseWrapper
     @GetMapping(value = "/demo4")
-    public Object fetchBaidu(){
-        return demoService.demo4();
+    public Object fetchBaidu(QueryUserRequest request){
+        return demoService.demo4(request);
     }
 
 }
