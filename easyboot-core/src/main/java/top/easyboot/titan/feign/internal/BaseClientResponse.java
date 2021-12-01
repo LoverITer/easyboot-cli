@@ -2,7 +2,6 @@ package top.easyboot.titan.feign.internal;
 
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
-import top.easyboot.titan.response.BaseResponse;
 import top.easyboot.titan.response.ResultCode;
 
 /**
@@ -15,13 +14,13 @@ public class BaseClientResponse<T> implements Response<T>{
     private T data;
     private String message;
     private String path;
-    private String resultCode;
+    private String code;
     private String serverTime;
     private String txId;
 
     @Override
     public boolean isSuccess() {
-        return StringUtils.equalsIgnoreCase(resultCode, ResultCode.SUCCESS.getCode());
+        return StringUtils.equalsIgnoreCase(code, ResultCode.SUCCESS.getCode());
     }
 
     @Override
@@ -41,6 +40,6 @@ public class BaseClientResponse<T> implements Response<T>{
 
     @Override
     public String resultCode() {
-        return this.resultCode;
+        return this.code;
     }
 }

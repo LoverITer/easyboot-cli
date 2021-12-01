@@ -54,11 +54,11 @@ public class DemoController {
      *
      * @return
      */
-    /*@ResponseWrapper
+    @ResponseWrapper
     @GetMapping("/object")
     public UserDetailsBean object(QueryUserRequest request) {
         return demoService.demo2(request);
-    }*/
+    }
 
     /**
      * 返回list的controller
