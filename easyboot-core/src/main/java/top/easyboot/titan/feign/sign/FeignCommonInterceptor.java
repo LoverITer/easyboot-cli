@@ -27,6 +27,7 @@ public class FeignCommonInterceptor implements RequestInterceptor {
     @Autowired
     private SignHandler signHandler;
 
+
     @SneakyThrows
     @Override
     public void apply(RequestTemplate requestTemplate) {
@@ -51,6 +52,5 @@ public class FeignCommonInterceptor implements RequestInterceptor {
         signQueriesParams.put(Constants.SIGN, Collections.singleton(signHandler.generateRequestSign(signEntity)));
 
         requestTemplate.queries(signQueriesParams);
-        String url1 = requestTemplate.request().url();
     }
 }

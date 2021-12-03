@@ -2,6 +2,7 @@ package top.easyboot.titan.aspect;
 
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.core.MethodParameter;
 import org.springframework.core.Ordered;
 import org.springframework.http.MediaType;
@@ -22,14 +23,19 @@ import java.util.Objects;
  */
 @Slf4j
 @ControllerAdvice
-public class ResponseResultHandlerAdvice implements ResponseBodyAdvice, Ordered {
+public class ResponseResultHandlerAdvice implements ResponseBodyAdvice<Object>, Ordered {
     @Override
-    public boolean supports(MethodParameter returnType, Class converterType) {
+    public boolean supports(MethodParameter returnType, @NotNull Class converterType) {
         return returnType.getAnnotatedElement().isAnnotationPresent(ResponseWrapper.class);
     }
 
     @Override
-    public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType mediaType, Class selectedClassType, ServerHttpRequest request, ServerHttpResponse response) {
+    public Object beforeBodyWrite(Object body,
+                                  @NotNull MethodParameter returnType,
+                                  @NotNull MediaType mediaType,
+                                  @NotNull Class selectedClassType,
+                                  @NotNull ServerHttpRequest request,
+                                  @NotNull ServerHttpResponse response) {
         if (Objects.nonNull(body)) {
             if(body instanceof BaseResponse) {
                 log.info("Writing "+ JSON.toJSON(body));

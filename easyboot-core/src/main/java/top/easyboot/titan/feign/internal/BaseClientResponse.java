@@ -35,7 +35,7 @@ public class BaseClientResponse<T> implements Response<T>{
 
     @Override
     public String displayMessage() {
-        return this.displayMessage();
+        return message;
     }
 
     @Override
