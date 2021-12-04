@@ -1,6 +1,5 @@
 package top.easyboot.titan.aspect;
 
-import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.core.MethodParameter;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 import top.easyboot.titan.annotation.ResponseWrapper;
 import top.easyboot.titan.response.BaseResponse;
+import top.easyboot.titan.util.JsonUtils;
 
 import java.util.Objects;
 
@@ -38,12 +38,12 @@ public class ResponseResultHandlerAdvice implements ResponseBodyAdvice<Object>, 
                                   @NotNull ServerHttpResponse response) {
         if (Objects.nonNull(body)) {
             if(body instanceof BaseResponse) {
-                log.info("Writing "+ JSON.toJSON(body));
+                log.info("Writing "+ JsonUtils.toJSONString(body));
                 return body;
             }
         }
         BaseResponse<Object> responseBody = BaseResponse.ok(body);
-        log.info("Writing "+ JSON.toJSONString(responseBody));
+        log.info("Writing "+ JsonUtils.toJSONString(responseBody));
         return responseBody;
     }
 
