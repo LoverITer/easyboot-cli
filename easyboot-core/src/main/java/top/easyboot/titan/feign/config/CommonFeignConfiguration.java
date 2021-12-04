@@ -12,7 +12,7 @@ import top.easyboot.titan.feign.sign.FeignCommonInterceptor;
  * @date: 2021-12-04 11:35
  */
 @Configuration
-public class CommonFeignConfiguration extends FeignConfiguration{
+public class CommonFeignConfiguration extends FeignConfiguration {
 
     @Autowired
     private SignHandler signHandler;

@@ -39,18 +39,18 @@ public abstract class FeignConfiguration {
     }
 
     @Autowired
-    private FeignConfigurationProperties feignProperties;
+    private FeignConfigurationProperties properties;
 
 
     @Bean
     public Client client() {
-        return new OkHttpClient(OkHttpClientFactory.getInstance());
+        return new OkHttpClient(OkHttpClientFactory.getInstance(properties));
     }
 
     @Bean
     public Request.Options options() {
-        return new Request.Options(feignProperties.getConnectTimeout(), TimeUnit.MILLISECONDS,
-                feignProperties.getReadTimeout(), TimeUnit.MILLISECONDS, true);
+        return new Request.Options(properties.getConnectTimeout(), TimeUnit.MILLISECONDS,
+                properties.getReadTimeout(), TimeUnit.MILLISECONDS, true);
     }
 
     @Bean
@@ -61,7 +61,7 @@ public abstract class FeignConfiguration {
 
     @Bean
     public Retryer retryer() {
-        return new Retryer.Default(feignProperties.getPeriod(), feignProperties.getRetryMaxPeriod(), feignProperties.getRetryMaxAttempts());
+        return new Retryer.Default(properties.getPeriod(), properties.getRetryMaxPeriod(), properties.getRetryMaxAttempts());
     }
 
     @Bean

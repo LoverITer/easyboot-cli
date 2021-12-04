@@ -13,9 +13,11 @@ public class FeignConfigurationProperties {
 
     private int readTimeout = 6000;
 
+    private int writeTimeout = 5000;
+
     private int connectTimeout = 3000;
 
-    private int period=100;
+    private int period = 100;
 
     private int retryMaxPeriod = 1000;
 
