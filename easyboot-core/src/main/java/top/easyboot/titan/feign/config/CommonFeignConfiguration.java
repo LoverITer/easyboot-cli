@@ -1,42 +1,24 @@
 package top.easyboot.titan.feign.config;
 
-import feign.Client;
-import feign.Logger;
-import feign.Request;
-import feign.okhttp.OkHttpClient;
-import org.springframework.beans.factory.annotation.Value;
+import feign.RequestInterceptor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import top.easyboot.titan.feign.internal.OkHttpClientFactory;
-
-import java.util.concurrent.TimeUnit;
+import top.easyboot.sign.SignHandler;
+import top.easyboot.titan.feign.sign.FeignCommonInterceptor;
 
 /**
  * @author: frank.huang
- * @date: 2021-11-14 20:31
+ * @date: 2021-12-04 11:35
  */
 @Configuration
-public class CommonFeignConfiguration {
+public class CommonFeignConfiguration extends FeignConfiguration{
 
-    @Value("${ribbon.read-timeout:6000}")
-    private int readTimeout;
-
-    @Value("${ribbon.connect-timeout:3000}")
-    private int connectTimeout;
+    @Autowired
+    private SignHandler signHandler;
 
     @Bean
-    public Client client(){
-        return new OkHttpClient(OkHttpClientFactory.getInstance());
+    public RequestInterceptor sign() {
+        return new FeignCommonInterceptor(signHandler);
     }
-
-    @Bean
-    public Request.Options options() {
-        return new Request.Options(connectTimeout, TimeUnit.MILLISECONDS, readTimeout,TimeUnit.MILLISECONDS,true);
-    }
-
-    @Bean
-    public Logger.Level logger(){
-        return Logger.Level.FULL;
-    }
-
 }

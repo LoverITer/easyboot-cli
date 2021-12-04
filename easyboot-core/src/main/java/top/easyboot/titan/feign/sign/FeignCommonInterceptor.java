@@ -6,8 +6,6 @@ import feign.Request;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import lombok.SneakyThrows;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import top.easyboot.constant.Constants;
 import top.easyboot.sign.SignEntity;
 import top.easyboot.sign.SignHandler;
@@ -21,12 +19,13 @@ import java.util.Map;
  * @author: frank.huang
  * @date: 2021-12-01 20:36
  */
-@Component
 public class FeignCommonInterceptor implements RequestInterceptor {
 
-    @Autowired
-    private SignHandler signHandler;
+    private final SignHandler signHandler;
 
+    public FeignCommonInterceptor(SignHandler signHandler) {
+        this.signHandler = signHandler;
+    }
 
     @SneakyThrows
     @Override

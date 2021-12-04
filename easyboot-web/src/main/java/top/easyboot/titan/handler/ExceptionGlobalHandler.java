@@ -51,7 +51,7 @@ public class ExceptionGlobalHandler {
      */
     @ExceptionHandler(BusinessException.class)
     public BaseResponse<Object> handleBusinessException(BusinessException e) {
-        log.error(e.getMessage(), e);
+        log.error(e.getMessage());
         return BaseResponse.fail(e.getCode(), e.getMessage());
     }
 
@@ -63,7 +63,7 @@ public class ExceptionGlobalHandler {
      */
     @ExceptionHandler({SignatureArgumentException.class,SignatureException.class})
     public BaseResponse<Object> handleSignException(RuntimeException e) {
-        log.error(e.getMessage(), e);
+        log.error(e.getMessage());
         return BaseResponse.fail(ResultCode.SIGN_FAIL.getCode(), e.getMessage());
     }
 }

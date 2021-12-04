@@ -16,7 +16,7 @@ import top.easyboot.titan.request.QueryUserRequest;
 @FeignClient(name = "demo",url = "${urls.demo}",configuration = CommonFeignConfiguration.class)
 public interface DemoClient extends Verify {
 
-    @GetMapping(value = "/v1/demo/object")
+    @GetMapping(value = "/v1/demo/objects")
     BaseClientResponse<UserDetailsBean> getUserDetailBean(@SpringQueryMap QueryUserRequest request);
 
 
