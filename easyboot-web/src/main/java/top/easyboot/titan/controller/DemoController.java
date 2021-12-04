@@ -94,8 +94,8 @@ public class DemoController {
 
     @ResponseWrapper
     @GetMapping(value = "/demo4")
-    public Object fetchBaidu(){
-        return demoService.demo4();
+    public Object fetchBaidu(QueryUserRequest request){
+        return demoService.demo4(request);
     }
 
 }

@@ -19,11 +19,11 @@ public final class Constants {
 
     //请求类
     public static final String REQUEST_ID = "RequestId";
+    public static final String HEADER_Request_ID = "X-Request-Id";
     public static final String TX_ID = "TxId";
     public static final String TRACE_ID = "TraceId";
     public static final String SPAN_ID = "SpanId";
     public static final String SPAN_EXPORT = "SpanExport";
-    public static final String REQUEST_ID_HEADER = "RequestId";
     public static final String IP = "IP";
     public static final String UNKNOWN_IP = "unknown";
     public static final String REQUEST_URL = "url";

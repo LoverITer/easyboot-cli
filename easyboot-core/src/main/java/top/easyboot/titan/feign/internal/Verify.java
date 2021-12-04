@@ -3,6 +3,7 @@ package top.easyboot.titan.feign.internal;
 import top.easyboot.titan.exception.BusinessException;
 import top.easyboot.titan.response.ResultCode;
 
+import java.util.Objects;
 import java.util.function.Supplier;
 
 /**
@@ -25,7 +26,7 @@ public interface Verify {
     }
 
     default <T> void throwIfFail(Response<T> response, ResultCode resultCode) {
-        if (!response.isSuccess()) {
+        if (Objects.isNull(response) || !response.isSuccess()) {
             throw new BusinessException(resultCode, response.message());
         }
     }

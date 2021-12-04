@@ -17,6 +17,6 @@ public interface IDemoService {
 
     List<UserDetailsBean> demo3();
 
-    Object demo4();
+    Object demo4(QueryUserRequest request);
 
 }

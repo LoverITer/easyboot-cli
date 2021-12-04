@@ -82,8 +82,8 @@ public class DemoService implements IDemoService {
     }
 
     @Override
-    public Object demo4(){
-         return demoClient.request(() -> demoClient.fetchBaidu());
+    public Object demo4(QueryUserRequest request){
+        return demoClient.request(() -> demoClient.getUserDetailBean(request));
     }
 
 }

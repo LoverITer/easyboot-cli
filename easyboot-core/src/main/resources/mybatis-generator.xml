@@ -46,7 +46,7 @@
         type="MIXEDMAPPER", 生成基于注解的Java Model和相应的Mapper对象
         type="XMLMAPPER", 生成SQLMap XML文件和独立的Mapper接口
         -->
-        <javaClientGenerator type="XMLMAPPER"
+        <javaClientGenerator type="ANNOTATEDMAPPER"
                              targetPackage="top.easyblog.titan.dao.auto.mapper"
                              targetProject="src/main/java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
