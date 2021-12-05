@@ -90,6 +90,7 @@ public class DemoController {
     @GetMapping("/exp/{num}")
     public void exception(@PathVariable(value = "num") String num) {
         System.out.println(num);
+        throw new ArithmeticException();
     }
 
     @ResponseWrapper

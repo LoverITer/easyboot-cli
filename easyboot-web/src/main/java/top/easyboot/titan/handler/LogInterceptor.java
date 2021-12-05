@@ -26,7 +26,7 @@ public class LogInterceptor implements HandlerInterceptor {
     public boolean preHandle(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull Object handler) throws Exception {
         String params;
         if (isEnableLoggingRequestDetails()) {
-            params = JSON.toJSON( request.getParameterMap()).toString();
+            params = JSON.toJSON(request.getParameterMap()).toString();
         } else {
             params = request.getParameterMap().isEmpty() ? "" : "masked";
         }
@@ -38,13 +38,12 @@ public class LogInterceptor implements HandlerInterceptor {
     }
 
 
-
-    public boolean isEnableLoggingRequestDetails(){
+    public boolean isEnableLoggingRequestDetails() {
         return enableLoggingRequestDetails;
     }
 
     private static String getRequestUri(HttpServletRequest request) {
-        String uri = (String)request.getAttribute("javax.servlet.include.request_uri");
+        String uri = (String) request.getAttribute("javax.servlet.include.request_uri");
         if (uri == null) {
             uri = request.getRequestURL().toString();
         }
