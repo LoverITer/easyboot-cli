@@ -31,17 +31,17 @@ import java.util.concurrent.TimeUnit;
 public abstract class FeignConfiguration {
 
     protected GsonHttpMessageConverter gsonHttpMessageConverter;
-    @Value("feign.custom.read-timeout:6000")
+    @Value("${feign.custom.read-timeout:6000}")
     private int readTimeout;
-    @Value("feign.custom.write-timeout:5000")
+    @Value("${feign.custom.write-timeout:5000}")
     private int writeTimeout;
-    @Value("feign.custom.connect-timeout:3000")
+    @Value("${feign.custom.connect-timeout:3000}")
     private int connectTimeout;
-    @Value("feign.custom.period:100")
+    @Value("${feign.custom.period:100}")
     private int period;
-    @Value("feign.custom.retry-max-period:1000")
+    @Value("${feign.custom.retry-max-period:1000}")
     private int retryMaxPeriod;
-    @Value("feign.custom.retry-max-attempts:3")
+    @Value("${feign.custom.retry-max-attempts:3}")
     private int retryMaxAttempts;
 
     {

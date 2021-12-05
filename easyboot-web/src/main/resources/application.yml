@@ -6,6 +6,7 @@ spring:
 logging:
   config: classpath:logback-spring.xml
 ---
+#api验签有关配置
 application:
   signature:
     enable: true
