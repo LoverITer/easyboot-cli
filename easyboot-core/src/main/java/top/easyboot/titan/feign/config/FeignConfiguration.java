@@ -7,7 +7,6 @@ import feign.codec.Encoder;
 import feign.codec.ErrorDecoder;
 import feign.okhttp.OkHttpClient;
 import org.slf4j.MDC;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.cloud.openfeign.FeignLoggerFactory;
@@ -32,25 +31,33 @@ import java.util.concurrent.TimeUnit;
 public abstract class FeignConfiguration {
 
     protected GsonHttpMessageConverter gsonHttpMessageConverter;
+    @Value("feign.custom.read-timeout:6000")
+    private int readTimeout;
+    @Value("feign.custom.write-timeout:5000")
+    private int writeTimeout;
+    @Value("feign.custom.connect-timeout:3000")
+    private int connectTimeout;
+    @Value("feign.custom.period:100")
+    private int period;
+    @Value("feign.custom.retry-max-period:1000")
+    private int retryMaxPeriod;
+    @Value("feign.custom.retry-max-attempts:3")
+    private int retryMaxAttempts;
 
     {
         gsonHttpMessageConverter = new GsonHttpMessageConverter();
         gsonHttpMessageConverter.setSupportedMediaTypes(Lists.newArrayList(MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN, new MediaType("application", "*+json")));
     }
 
-    @Autowired
-    private FeignConfigurationProperties properties;
-
 
     @Bean
     public Client client() {
-        return new OkHttpClient(OkHttpClientFactory.getInstance(properties));
+        return new OkHttpClient(OkHttpClientFactory.getInstance(connectTimeout, writeTimeout, readTimeout));
     }
 
     @Bean
     public Request.Options options() {
-        return new Request.Options(properties.getConnectTimeout(), TimeUnit.MILLISECONDS,
-                properties.getReadTimeout(), TimeUnit.MILLISECONDS, true);
+        return new Request.Options(readTimeout, TimeUnit.MILLISECONDS, readTimeout, TimeUnit.MILLISECONDS, true);
     }
 
     @Bean
@@ -61,24 +68,24 @@ public abstract class FeignConfiguration {
 
     @Bean
     public Retryer retryer() {
-        return new Retryer.Default(properties.getPeriod(), properties.getRetryMaxPeriod(), properties.getRetryMaxAttempts());
+        return new Retryer.Default(period, retryMaxPeriod, retryMaxAttempts);
     }
 
     @Bean
     public ErrorDecoder errorDecoder() {
         return (method, response) -> {
-            throw new BusinessException(ResultCode.REMOTE_INVOKE_FAIL,response.reason());
+            throw new BusinessException(ResultCode.REMOTE_INVOKE_FAIL, response.reason());
         };
     }
 
     @Bean
     public Decoder decoder() {
-        return new ResponseEntityDecoder(new SpringDecoder(() -> new HttpMessageConverters(false,Lists.newArrayList(gsonHttpMessageConverter))));
+        return new ResponseEntityDecoder(new SpringDecoder(() -> new HttpMessageConverters(false, Lists.newArrayList(gsonHttpMessageConverter))));
     }
 
     @Bean
     public Encoder encoder() {
-        return new SpringEncoder(()->new HttpMessageConverters(false,Lists.newArrayList(gsonHttpMessageConverter)));
+        return new SpringEncoder(() -> new HttpMessageConverters(false, Lists.newArrayList(gsonHttpMessageConverter)));
     }
 
     @Bean
@@ -87,8 +94,8 @@ public abstract class FeignConfiguration {
     }
 
     @Bean
-    public FeignLoggerFactory feignLoggerFactory(@Value("spring.profiles.active:dev")String env){
-        return type -> new FeignLogger(type,env);
+    public FeignLoggerFactory feignLoggerFactory(@Value("spring.profiles.active:dev") String env) {
+        return type -> new FeignLogger(type, env);
     }
 
 }

@@ -1,7 +1,6 @@
 package top.easyboot.titan.feign.internal;
 
 import okhttp3.OkHttpClient;
-import top.easyboot.titan.feign.config.FeignConfigurationProperties;
 
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -15,13 +14,13 @@ public final class OkHttpClientFactory {
 
     private static final AtomicReference<OkHttpClient> OK_HTTP_CLIENT=new AtomicReference<>();
 
-    public static OkHttpClient getInstance(FeignConfigurationProperties properties){
+    public static OkHttpClient getInstance(long connectTimeout,long writeTimeout,long readTimeout){
       for(;;){
           OkHttpClient client = OK_HTTP_CLIENT.get();
           if(Objects.nonNull(client)){
               return client;
           }
-          client=newOkHttpClient(properties.getConnectTimeout(),properties.getWriteTimeout(),properties.getReadTimeout());
+          client=newOkHttpClient(connectTimeout, writeTimeout, readTimeout);
           if(OK_HTTP_CLIENT.compareAndSet(null,client)){
               return client;
           }
