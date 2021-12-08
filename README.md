@@ -11,15 +11,13 @@
         <a href="https://img.shields.io/github/stars/LoverITer/EasyBoot-CLI">
             <img src="https://img.shields.io/github/stars/LoverITer/EasyBoot-CLI" >
         </a>
-        <a href="https://github.com/xuxueli/xxl-sso/releases">
-            <img src="https://img.shields.io/github/release/xuxueli/xxl-sso.svg" >
+        <a href="https://img.shields.io/badge/release-v1.0.0-blue">
+            <img src="https://img.shields.io/badge/release-v1.0.0-blue" >
         </a>
         <a href="https://img.shields.io/github/license/LoverITer/EasyBoot-CLI">
             <img src="https://img.shields.io/github/license/LoverITer/EasyBoot-CLI" >
         </a>
-        <a href="https://img.shields.io/badge/release-1.0.0-blue">
-            <img src="https://img.shields.io/badge/release-1.0.0-blue" >
-        </a>
+        
     </p>    
 </p>
 
