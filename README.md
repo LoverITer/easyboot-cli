@@ -17,7 +17,6 @@
         <a href="https://img.shields.io/github/license/LoverITer/EasyBoot-CLI">
             <img src="https://img.shields.io/github/license/LoverITer/EasyBoot-CLI" >
         </a>
-        
     </p>    
 </p>
 
