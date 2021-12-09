@@ -29,9 +29,9 @@ easyboot-cli是一个基于SpringBoot深度定制的多模块开发脚手架，�
 3. API接口签名验证保护接口不再“裸奔”
 <br/>
 TODO:
-1. 引入kakfa并且实现事务消息
-2. 整合常见分布式定时任务框架（初期计划引入：XXL-Job）
-3. 
+1. 引入kakfa & 实现事务消息
+2. 整合常见分布式定时任务框架（初期计划引入：[XXL-Job](https://github.com/xuxueli/xxl-sso)）
+3. 引入分布式锁
 
 <br/>
 easyboot-cli is a multi-module scaffolding project based on SpringBoot, which extracts the directory structure commonly used in daily development,
