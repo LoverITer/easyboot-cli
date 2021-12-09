@@ -27,11 +27,7 @@ easyboot-cli是一个基于SpringBoot深度定制的多模块开发脚手架，�
 1. 基于自定义注解 `ResponseWrapper` 自动封装Restful API响应体，无需在再代码中手动封装返回响应对象
 2. 整合常见日志框架（logback、log4j、log4j2），并提供全量路追踪**请求id**和**事物id**日志
 3. API接口签名验证保护接口不再“裸奔”
-<br/>
-TODO:
-1. 引入kakfa & 实现事务消息
-2. 整合常见分布式定时任务框架（初期计划引入：[XXL-Job](https://github.com/xuxueli/xxl-sso)）
-3. 引入分布式锁
+
 
 <br/>
 easyboot-cli is a multi-module scaffolding project based on SpringBoot, which extracts the directory structure commonly used in daily development,
