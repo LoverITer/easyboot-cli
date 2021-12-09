@@ -1,7 +1,7 @@
 <p align="center">
     <img src="http://image.easyblog.top/1639013992477dc523b21-8b24-4015-bdad-2f44dc30541d.png" width="300px">
     <p align="center">
-        EasyBoot-CLI, A Out-of-the-box scaffolding deeply customized based on spring boot.
+       An out-of-the-box multi-module Web development scaffold deeply customized based on Spring Boot
         <br>
         <br>
         <a href="https://img.shields.io/github/forks/LoverITer/EasyBoot-CLI">
