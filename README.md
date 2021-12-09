@@ -1,6 +1,5 @@
 <p align="center">
-    <img src="http://image.easyblog.top/1639013630759bec6e189-10ec-476d-820f-22c627a726e8.png" width="150">
-    <h3 align="center">EasyBoot-CLI</h3>
+    <img src="http://image.easyblog.top/1639013992477dc523b21-8b24-4015-bdad-2f44dc30541d.png" width="300px">
     <p align="center">
         EasyBoot-CLI, A Out-of-the-box scaffolding deeply customized based on spring boot.
         <br>
