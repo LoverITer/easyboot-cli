@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://www.xuxueli.com/doc/static/xxl-job/images/xxl-logo.jpg" width="150">
+    <img src="http://image.easyblog.top/1639013206182d2b5e605-5a33-44bc-a037-2ae3328e8441.png" width="150">
     <h3 align="center">EasyBoot-CLI</h3>
     <p align="center">
         EasyBoot-CLI, A Out-of-the-box scaffolding deeply customized based on spring boot.
