@@ -1,15 +1,33 @@
-📚 EasyBoot-CLI
-========
-easyboot-cli是一个基于SpringBoot搭建多模块脚手架，抽取了日常开发常用的目录结构、各种配置以及mvn依赖，使用脚手架模板可以节省大量在创建工程时耗费的时间，并且由于统一化的定制结构，对于管理项目代码风格一致，这是一个非常有效地手段。
+<p align="center">
+    <img src="http://image.easyblog.top/1639013992477dc523b21-8b24-4015-bdad-2f44dc30541d.png" width="300px">
+    <p align="center">
+       <b>An out-of-the-box multi-module Web development scaffold deeply customized based on Spring Boot</b>
+        <br>
+        <br>
+        <a href="https://img.shields.io/github/forks/LoverITer/EasyBoot-CLI">
+            <img src="https://img.shields.io/github/forks/LoverITer/EasyBoot-CLI" >
+        </a>
+        <a href="https://img.shields.io/github/stars/LoverITer/EasyBoot-CLI">
+            <img src="https://img.shields.io/github/stars/LoverITer/EasyBoot-CLI" >
+        </a>
+        <a href="https://img.shields.io/badge/release-v1.0.0-blue">
+            <img src="https://img.shields.io/badge/release-v1.0.0-blue" >
+        </a>
+        <a href="https://img.shields.io/github/license/LoverITer/EasyBoot-CLI">
+            <img src="https://img.shields.io/github/license/LoverITer/EasyBoot-CLI" >
+        </a>
+    </p>    
+</p>
+
+
 
 ⭐️ 1、快速开始 Getting Start
 ------------
-easyboot-cli是一个基于SpringBoot搭建多模块脚手架工程，抽取了日常开发常用的目录结构、
-各种配置以及mvn依赖，使用脚手架模板可以节约大量花费在新建工程上的时间，从而聚焦于业务设计和实现，并且由于统一化的定制结构，
-对于管理项目代码风格一致，这是一个非常有效地手段。 脚手架特性：
+easyboot-cli是一个基于SpringBoot深度定制的多模块开发脚手架，抽取了日常开发常用的目录结构、各种配置以及mvn依赖，使用脚手架模板可以节省大量在创建工程时耗费的时间，并且由于统一化的定制结构，对于管理项目保持代码风格一致，这是一个非常有效地手段。 总体上，脚手架具有如下特性：
 1. 基于自定义注解 `ResponseWrapper` 自动封装Restful API响应体，无需在再代码中手动封装返回响应对象
-2. 整合Logback，提供全量路追踪**请求id**和**事物id**日志
+2. 整合常见日志框架（logback、log4j、log4j2），并提供全量路追踪**请求id**和**事物id**日志
 3. API接口签名验证保护接口不再“裸奔”
+
 
 <br/>
 easyboot-cli is a multi-module scaffolding project based on SpringBoot, which extracts the directory structure commonly used in daily development,
