@@ -1,7 +1,6 @@
 package top.easyboot.titan.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.GsonHttpMessageConverter;
@@ -9,7 +8,6 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import top.easyboot.handler.SignInterceptor;
 import top.easyboot.titan.handler.LogInterceptor;
-import top.easyboot.titan.util.JsonUtils;
 
 import java.util.List;
 
@@ -27,12 +25,8 @@ public class WebAppConfigurer implements WebMvcConfigurer {
     private SignInterceptor signInterceptor;
 
     @Autowired
-    private GsonHttpMessageConverter gsonHttpMessageConverter;
+    private GsonHttpMessageConverter customConverters;
 
-    @Bean
-    public GsonHttpMessageConverter gsonHttpMessageConverter(){
-        return new GsonHttpMessageConverter(JsonUtils.getGson());
-    }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -40,10 +34,10 @@ public class WebAppConfigurer implements WebMvcConfigurer {
         registry.addInterceptor(signInterceptor);
     }
 
+
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        converters.add(0,gsonHttpMessageConverter);
+        converters.add(0, customConverters);
     }
-
 
 }

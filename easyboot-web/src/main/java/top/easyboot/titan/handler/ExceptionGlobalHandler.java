@@ -10,8 +10,6 @@ import top.easyboot.titan.exception.BusinessException;
 import top.easyboot.titan.response.BaseResponse;
 import top.easyboot.titan.response.ResultCode;
 
-import javax.servlet.ServletException;
-
 /**
  * @author: frank.huang
  * @date: 2021-11-01 17:40
@@ -29,6 +27,7 @@ public class ExceptionGlobalHandler {
      */
     @ExceptionHandler(Exception.class)
     public BaseResponse<Object> handleException(Exception e) {
+        e.printStackTrace();
         return BaseResponse.fail(ResultCode.INTERNAL_ERROR.getCode(), e.getMessage());
     }
 
@@ -40,6 +39,7 @@ public class ExceptionGlobalHandler {
      */
     @ExceptionHandler(RuntimeException.class)
     public BaseResponse<Object> handleRuntimeException(RuntimeException e) {
+        e.printStackTrace();
         return BaseResponse.fail(ResultCode.INTERNAL_ERROR.getCode(), e.getMessage());
     }
 
@@ -51,13 +51,10 @@ public class ExceptionGlobalHandler {
      */
     @ExceptionHandler(BusinessException.class)
     public BaseResponse<Object> handleBusinessException(BusinessException e) {
+        e.printStackTrace();
         return BaseResponse.fail(e.getCode(), e.getMessage());
     }
 
-    @ExceptionHandler(ServletException.class)
-    public BaseResponse<Object> handleServletException(ServletException e){
-        return BaseResponse.fail(ResultCode.INTERNAL_ERROR.getCode(),e.getRootCause().getMessage());
-    }
 
     /**
      * 处理未捕获的自定义业务异常 SignatureArgumentException、SignatureException

@@ -7,6 +7,8 @@ import feign.codec.Encoder;
 import feign.codec.ErrorDecoder;
 import feign.okhttp.OkHttpClient;
 import org.slf4j.MDC;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.cloud.openfeign.FeignLoggerFactory;
@@ -14,7 +16,6 @@ import org.springframework.cloud.openfeign.support.ResponseEntityDecoder;
 import org.springframework.cloud.openfeign.support.SpringDecoder;
 import org.springframework.cloud.openfeign.support.SpringEncoder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.GsonHttpMessageConverter;
 import top.easyboot.titan.constant.Constants;
 import top.easyboot.titan.exception.BusinessException;
@@ -30,7 +31,7 @@ import java.util.concurrent.TimeUnit;
  */
 public abstract class FeignConfiguration {
 
-    protected GsonHttpMessageConverter gsonHttpMessageConverter;
+
     @Value("${feign.custom.read-timeout:6000}")
     private int readTimeout;
     @Value("${feign.custom.write-timeout:5000}")
@@ -44,10 +45,9 @@ public abstract class FeignConfiguration {
     @Value("${feign.custom.retry-max-attempts:3}")
     private int retryMaxAttempts;
 
-    {
-        gsonHttpMessageConverter = new GsonHttpMessageConverter();
-        gsonHttpMessageConverter.setSupportedMediaTypes(Lists.newArrayList(MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN, new MediaType("application", "*+json")));
-    }
+    @Autowired
+    @Qualifier(value = "customConverters")
+    private GsonHttpMessageConverter customConverters;
 
 
     @Bean
@@ -80,12 +80,12 @@ public abstract class FeignConfiguration {
 
     @Bean
     public Decoder decoder() {
-        return new ResponseEntityDecoder(new SpringDecoder(() -> new HttpMessageConverters(false, Lists.newArrayList(gsonHttpMessageConverter))));
+        return new ResponseEntityDecoder(new SpringDecoder(() -> new HttpMessageConverters(false, Lists.newArrayList(customConverters))));
     }
 
     @Bean
     public Encoder encoder() {
-        return new SpringEncoder(() -> new HttpMessageConverters(false, Lists.newArrayList(gsonHttpMessageConverter)));
+        return new SpringEncoder(() -> new HttpMessageConverters(false, Lists.newArrayList(customConverters)));
     }
 
     @Bean

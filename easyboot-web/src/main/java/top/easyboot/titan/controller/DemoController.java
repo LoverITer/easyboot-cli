@@ -16,6 +16,7 @@ import java.util.List;
  * @author: frank.huang
  * @date: 2021-10-31 23:08
  */
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/v1/demo")
 public class DemoController {
