@@ -37,14 +37,17 @@ public class ResponseResultHandlerAdvice implements ResponseBodyAdvice<Object>, 
                                   @NotNull ServerHttpRequest request,
                                   @NotNull ServerHttpResponse response) {
         if (Objects.nonNull(body)) {
-            if(body instanceof BaseResponse) {
-                log.info("Writing "+ JsonUtils.toJSONString(body));
+            if (body instanceof BaseResponse) {
+                log.info("Writing " + JsonUtils.toJSONString(body));
                 return body;
             }
+            String typeName = body.getClass().getTypeName();
+
+            BaseResponse<Object> responseBody = BaseResponse.ok(body);
+            log.info("Writing " + JsonUtils.toJSONString(responseBody));
+            return responseBody;
         }
-        BaseResponse<Object> responseBody = BaseResponse.ok(body);
-        log.info("Writing "+ JsonUtils.toJSONString(responseBody));
-        return responseBody;
+        return null;
     }
 
     @Override
