@@ -12,10 +12,12 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum ResultCode {
+    //sever internal
     SUCCESS,
     INVALID_PARAMS,
     NOT_FOUND,
     INTERNAL_ERROR,
+    DATA_ACCESS_FAIL,
 
     SIGN_FAIL,
     SIGN_ERROR,

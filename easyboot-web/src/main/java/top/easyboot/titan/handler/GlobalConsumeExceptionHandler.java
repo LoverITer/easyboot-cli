@@ -1,6 +1,7 @@
 package top.easyboot.titan.handler;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataAccessException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,7 +18,7 @@ import top.easyboot.titan.response.ResultCode;
 @Slf4j
 @ResponseBody
 @ControllerAdvice
-public class ExceptionGlobalHandler {
+public class GlobalConsumeExceptionHandler {
 
     /**
      * 处理未捕获的Exception
@@ -65,5 +66,15 @@ public class ExceptionGlobalHandler {
     @ExceptionHandler({SignatureArgumentException.class,SignatureException.class})
     public BaseResponse<Object> handleSignException(RuntimeException e) {
         return BaseResponse.fail(ResultCode.SIGN_FAIL.getCode(), e.getMessage());
+    }
+
+    /**
+     * 捕获数据库异常
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(DataAccessException.class)
+    public BaseResponse<Object> handleDataBaseException(DataAccessException e){
+        return BaseResponse.fail(ResultCode.DATA_ACCESS_FAIL.getCode(),e.getCause().toString());
     }
 }
