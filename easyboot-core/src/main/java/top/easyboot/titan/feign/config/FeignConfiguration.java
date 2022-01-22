@@ -31,7 +31,6 @@ import java.util.concurrent.TimeUnit;
  */
 public abstract class FeignConfiguration {
 
-
     @Value("${feign.custom.read-timeout:6000}")
     private int readTimeout;
     @Value("${feign.custom.write-timeout:5000}")
