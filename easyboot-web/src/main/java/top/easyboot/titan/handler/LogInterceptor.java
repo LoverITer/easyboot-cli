@@ -1,12 +1,13 @@
 package top.easyboot.titan.handler;
 
-import com.alibaba.fastjson.JSON;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
+import top.easyboot.titan.util.JsonUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,7 +27,7 @@ public class LogInterceptor implements HandlerInterceptor {
     public boolean preHandle(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull Object handler) throws Exception {
         String params;
         if (isEnableLoggingRequestDetails()) {
-            params = JSON.toJSON(request.getParameterMap()).toString();
+            params = JsonUtils.toJSONString(request.getParameterMap());
         } else {
             params = request.getParameterMap().isEmpty() ? "" : "masked";
         }

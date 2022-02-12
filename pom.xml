@@ -28,7 +28,6 @@
         <druid.version>1.1.16</druid.version>
         <mybatis.spring.boot.version>2.1.0</mybatis.spring.boot.version>
         <pagehelper-version>1.2.13</pagehelper-version>
-        <fastjson.version>1.2.62</fastjson.version>
         <easyboot-common-version>1.0.0</easyboot-common-version>
         <easyboot-core-version>1.0.0</easyboot-core-version>
         <commons-logging-version>1.1.1</commons-logging-version>
@@ -156,11 +155,6 @@
                 <version>${lombok.version}</version>
                 <scope>provided</scope>
             </dependency>
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
-                <version>${fastjson.version}</version>
-            </dependency>
             <!--短信服务-->
             <dependency>
                 <groupId>commons-logging</groupId>
@@ -221,4 +215,13 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-archetype-plugin</artifactId>
+                <version>3.0.1</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>

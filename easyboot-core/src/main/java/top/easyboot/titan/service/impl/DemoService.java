@@ -1,6 +1,6 @@
 package top.easyboot.titan.service.impl;
 
-import com.alibaba.fastjson.JSON;
+
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -11,6 +11,7 @@ import top.easyboot.titan.constant.Constants;
 import top.easyboot.titan.feign.client.DemoClient;
 import top.easyboot.titan.request.QueryUserRequest;
 import top.easyboot.titan.service.IDemoService;
+import top.easyboot.titan.util.JsonUtils;
 import top.easyboot.titan.util.RedisUtils;
 
 import java.util.List;
@@ -48,7 +49,7 @@ public class DemoService implements IDemoService {
         if (StringUtils.isNotEmpty(request.getName())) {
             String jsonStr = redisUtils.get(String.format(Constants.REDIS_USER_KEY, request.getName()));
             if (StringUtils.isNotEmpty(jsonStr)) {
-                return JSON.parseObject(jsonStr, UserDetailsBean.class);
+                return JsonUtils.parseObject(jsonStr, UserDetailsBean.class);
             }
             userDetailsBean.setName(request.getName());
         }
@@ -58,7 +59,7 @@ public class DemoService implements IDemoService {
         if (Objects.nonNull(request.getAge())) {
             userDetailsBean.setAge(request.getAge());
         }
-        redisUtils.set(String.format(Constants.REDIS_USER_KEY, request.getName()), JSON.toJSONString(request), 5L, TimeUnit.MINUTES);
+        redisUtils.set(String.format(Constants.REDIS_USER_KEY, request.getName()), JsonUtils.toJSONString(request), 5L, TimeUnit.MINUTES);
         return userDetailsBean;
     }
 
