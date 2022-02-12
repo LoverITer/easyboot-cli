@@ -2,6 +2,9 @@ package top.easyboot.titan.handler;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataAccessException;
+import org.springframework.validation.BindException;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -10,6 +13,8 @@ import top.easyboot.exception.SignatureException;
 import top.easyboot.titan.exception.BusinessException;
 import top.easyboot.titan.response.BaseResponse;
 import top.easyboot.titan.response.ResultCode;
+
+import java.util.List;
 
 /**
  * @author: frank.huang
@@ -76,5 +81,39 @@ public class GlobalConsumeExceptionHandler {
     @ExceptionHandler(DataAccessException.class)
     public BaseResponse<Object> handleDataBaseException(DataAccessException e){
         return BaseResponse.fail(ResultCode.DATA_ACCESS_FAIL.getCode(),e.getCause().toString());
+    }
+
+    /**
+     * 参数验证不正确
+     *
+     * @return
+     */
+    @ExceptionHandler(BindException.class)
+    public BaseResponse<Object> handBindingException(BindException e) {
+        List<ObjectError> allErrors = e.getAllErrors();
+        return BaseResponse.fail(ResultCode.PARAMTER_NOT_VALID.getCode(), buildValidErrorsMsg(allErrors));
+    }
+
+    /**
+     * 参数验证不正确
+     *
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public BaseResponse<Object> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
+        List<ObjectError> allErrors = e.getBindingResult().getAllErrors();
+        return BaseResponse.fail(ResultCode.PARAMTER_NOT_VALID.getCode(), buildValidErrorsMsg(allErrors));
+    }
+
+    /**
+     * 构建参数验证错误
+     *
+     * @return
+     */
+    private String buildValidErrorsMsg(List<ObjectError> errors) {
+        StringBuilder errorMsgBuilder = new StringBuilder();
+        errors.forEach(e -> errorMsgBuilder.append(e.getDefaultMessage()).append(" |"));
+        return errorMsgBuilder.substring(0, errorMsgBuilder.length() - 2);
     }
 }

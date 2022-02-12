@@ -8,6 +8,7 @@ import top.easyboot.titan.request.CreateUserRequest;
 import top.easyboot.titan.request.QueryUserRequest;
 import top.easyboot.titan.service.IDemoService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -80,7 +81,7 @@ public class DemoController {
      */
     @ResponseWrapper
     @PostMapping("/add")
-    public CreateUserRequest postObject(@RequestBody CreateUserRequest request) {
+    public CreateUserRequest postObject(@RequestBody @Valid CreateUserRequest request) {
         return request;
     }
 

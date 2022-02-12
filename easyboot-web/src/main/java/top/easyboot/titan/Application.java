@@ -12,8 +12,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableFeignClients
 @EnableTransactionManagement
 @MapperScans({
-        @MapperScan("top.easyboot.titan.dao"),
-        @MapperScan("top.easyboot.dao.auto")
+        @MapperScan("top.easyboot.titan.dao")
 })
 @SpringBootApplication(scanBasePackages = {"top.easyboot.titan"})
 public class Application {
