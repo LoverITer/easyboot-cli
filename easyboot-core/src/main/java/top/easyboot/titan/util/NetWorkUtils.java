@@ -2,13 +2,8 @@ package top.easyboot.titan.util;
 
 
 import lombok.extern.slf4j.Slf4j;
-import sun.nio.ch.Net;
 
 import javax.servlet.http.HttpServletRequest;
-import java.net.Inet4Address;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.util.Enumeration;
 
 /**
  * @author frank.huang

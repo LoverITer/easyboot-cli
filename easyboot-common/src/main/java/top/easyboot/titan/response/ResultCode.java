@@ -23,7 +23,7 @@ public enum ResultCode {
     SIGN_ERROR,
     SIGN_NOT_FOUND,
     SING_HAS_EXPIRE,
-
+    PARAMETER_VALIDATE_FAILED,
     REMOTE_INVOKE_FAIL;
 
 

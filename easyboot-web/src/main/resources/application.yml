@@ -1,5 +1,5 @@
 server:
-  port: 8001
+  port: 9812
 spring:
   application:
     name: easyblig-cli
