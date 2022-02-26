@@ -1,4 +1,4 @@
-package top.easyboot.titan.handler;
+package top.easyboot.titan.config;
 
 import org.jetbrains.annotations.NotNull;
 import org.springframework.core.Conventions;

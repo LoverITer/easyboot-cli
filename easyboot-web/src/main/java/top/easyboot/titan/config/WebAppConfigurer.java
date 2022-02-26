@@ -9,7 +9,6 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import top.easyboot.handler.SignInterceptor;
 import top.easyboot.titan.handler.LogInterceptor;
-import top.easyboot.titan.handler.UnderlineToCamelArgumentArgumentResolver;
 
 import java.util.List;
 
@@ -45,6 +44,6 @@ public class WebAppConfigurer implements WebMvcConfigurer {
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
         //将Get  请求的下划线转化成驼峰样式
-        argumentResolvers.add(new UnderlineToCamelArgumentArgumentResolver());
+        argumentResolvers.add(new UnderlineToCamelArgumentResolver());
     }
 }
