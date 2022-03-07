@@ -1,6 +1,7 @@
 package top.easyboot.titan.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.GsonHttpMessageConverter;
@@ -8,6 +9,7 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import top.easyboot.handler.SignInterceptor;
+import top.easyboot.titan.feign.config.http.converter.CustomGsonHttpMessageConverter;
 import top.easyboot.titan.handler.LogInterceptor;
 
 import java.util.List;
@@ -45,5 +47,10 @@ public class WebAppConfigurer implements WebMvcConfigurer {
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
         //将Get  请求的下划线转化成驼峰样式
         argumentResolvers.add(new UnderlineToCamelArgumentResolver());
+    }
+
+    @Bean
+    public GsonHttpMessageConverter customConverters() {
+        return new CustomGsonHttpMessageConverter();
     }
 }
