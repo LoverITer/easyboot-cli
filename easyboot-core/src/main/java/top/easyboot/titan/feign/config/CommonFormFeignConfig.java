@@ -11,16 +11,16 @@ import org.springframework.cloud.openfeign.support.SpringEncoder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.GsonHttpMessageConverter;
-import top.easyblog.titan.exception.BusinessException;
-import top.easyblog.titan.feign.config.http.converter.FormHttpMessageConverter;
-import top.easyblog.titan.response.ResultCode;
-import top.easyblog.titan.util.JsonUtils;
+import top.easyboot.titan.exception.BusinessException;
+import top.easyboot.titan.feign.config.http.converter.FormHttpMessageConverter;
+import top.easyboot.titan.response.ResultCode;
+import top.easyboot.titan.util.JsonUtils;
 
 /**
  * @author: frank.huang
  * @date: 2022-03-02 20:42
  */
-public class CommonFormFeignConfig extends top.easyblog.titan.feign.config.FeignConfig {
+public class CommonFormFeignConfig extends FeignConfig {
 
     private GsonHttpMessageConverter customGsonConverters;
     private FormHttpMessageConverter formHttpMessageConverter;
