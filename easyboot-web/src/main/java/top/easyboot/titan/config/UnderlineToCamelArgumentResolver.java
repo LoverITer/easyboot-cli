@@ -1,4 +1,4 @@
-package top.easyboot.titan.handler;
+package top.easyboot.titan.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
  * @date: 2022-02-12 17:10
  */
 @Slf4j
-public class UnderlineToCamelArgumentArgumentResolver extends AbstractCustomizeArgumentResolver {
+public class UnderlineToCamelArgumentResolver extends AbstractCustomizeArgumentResolver {
     /**
      * 匹配_加任意一个字符
      */
